@@ -2,21 +2,39 @@ package com.example.hungry_student_login.mainPage.fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.hungry_student_login.R;
 import com.example.hungry_student_login.data.RestaurantListData;
 import com.example.hungry_student_login.mainPage.restaurant.RestaurantInfoPage;
 import com.example.hungry_student_login.mainPage.restaurant.RestaurantListAdapter;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,6 +42,12 @@ import com.example.hungry_student_login.mainPage.restaurant.RestaurantListAdapte
  * create an instance of this fragment.
  */
 public class RestaurantListFragment extends Fragment {
+
+    String receiveMsg;
+    //ArrayList<RestaurantListData> restaurantListDataArrayList;
+    RestaurantListAdapter adapter = new RestaurantListAdapter();
+    String url = "http://43.206.19.165/2016041085/restaurantlist.php";
+
 
 
 
@@ -80,40 +104,10 @@ public class RestaurantListFragment extends Fragment {
         LayoutInflater categoryInflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         categoryInflater.inflate(R.layout.category_gridlayout, categoryFrame, true);
 
-
         ListView listView = v.findViewById(R.id.restaurant_list);
-        RestaurantListAdapter adapter = new RestaurantListAdapter();
-        adapter.addItem(new RestaurantListData("김김김",1,3.1));
-        adapter.addItem(new RestaurantListData("최최최",2,3.2));
-        adapter.addItem(new RestaurantListData("이이이",3,3.3));
-        adapter.addItem(new RestaurantListData("박박박",4,3.4));
-        adapter.addItem(new RestaurantListData("정정정",5,3.5));
-        adapter.addItem(new RestaurantListData("김김김",1,3.1));
-        adapter.addItem(new RestaurantListData("최최최",2,3.2));
-        adapter.addItem(new RestaurantListData("이이이",3,3.3));
-        adapter.addItem(new RestaurantListData("박박박",4,3.4));
-        adapter.addItem(new RestaurantListData("정정정",5,3.5));
-        adapter.addItem(new RestaurantListData("김김김",1,3.1));
-        adapter.addItem(new RestaurantListData("최최최",2,3.2));
-        adapter.addItem(new RestaurantListData("이이이",3,3.3));
-        adapter.addItem(new RestaurantListData("박박박",4,3.4));
-        adapter.addItem(new RestaurantListData("정정정",5,3.5));
-        adapter.addItem(new RestaurantListData("김김김",1,3.1));
-        adapter.addItem(new RestaurantListData("최최최",2,3.2));
-        adapter.addItem(new RestaurantListData("이이이",3,3.3));
-        adapter.addItem(new RestaurantListData("박박박",4,3.4));
-        adapter.addItem(new RestaurantListData("정정정",5,3.5));
-        adapter.addItem(new RestaurantListData("김김김",1,3.1));
-        adapter.addItem(new RestaurantListData("최최최",2,3.2));
-        adapter.addItem(new RestaurantListData("이이이",3,3.3));
-        adapter.addItem(new RestaurantListData("박박박",4,3.4));
-        adapter.addItem(new RestaurantListData("정정정",5,3.5));
-        adapter.addItem(new RestaurantListData("김김김",1,3.1));
-        adapter.addItem(new RestaurantListData("최최최",2,3.2));
-        adapter.addItem(new RestaurantListData("이이이",3,3.3));
-        adapter.addItem(new RestaurantListData("박박박",4,3.4));
-        adapter.addItem(new RestaurantListData("정정정",5,3.5));
+
         listView.setAdapter(adapter);
+        new DownloadWebpageTask().execute(url);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -122,7 +116,83 @@ public class RestaurantListFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
         return v;
+    }
+    private class DownloadWebpageTask extends AsyncTask<String,Void,String> {
+        //주요 내용 실행
+        @Override
+        protected String doInBackground(String... urls) {
+            try {
+                return (String)downloadUrl((String)urls[0]);
+            } catch (IOException e) {
+                return "다운로드 실패";
+            }
+        }
+        private String downloadUrl(String myurl) throws IOException {
+            HttpURLConnection conn = null;
+            try {
+                URL url = new URL(myurl);
+                conn = (HttpURLConnection) url.openConnection();
+                BufferedInputStream buf = new BufferedInputStream(conn.getInputStream());
+                BufferedReader bufreader = new BufferedReader(new InputStreamReader(buf, "utf-8"));
+                String line = null;
+                String page = "";
+                while((line = bufreader.readLine()) != null) {
+                    page += line;
+                }
+                Log.d("json", "downloadUrl: "+page);
+                return page;
+            } finally {
+                conn.disconnect();
+            }
+        }
+        //ui변경 작업 실행
+        @Override
+        protected void onPostExecute(String result) {
+
+            try {
+                JSONArray jsonArray = new JSONArray(result);
+                if (jsonArray == null) {
+                    Toast.makeText(getContext(), "null", Toast.LENGTH_SHORT).show();
+                }
+
+                for (int i=0; i < jsonArray.length(); i++) {
+
+
+                    try {
+                        Log.d("json", "try "+i);
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        RestaurantListData temp = new RestaurantListData();
+
+                        // Pulling items from the array
+                        temp.setRestaurant_id(jsonObject.getInt("restaurant_id"));
+                        temp.setCrn(jsonObject.getInt("crn"));
+                        temp.setRestaurant_name(jsonObject.getString("restaurant_name"));
+                        temp.setEmail(jsonObject.getString("email"));
+                        temp.setAddress(jsonObject.getString("address"));
+                        temp.setRestaurant_info(jsonObject.getString("restaurant_info"));
+                        temp.setMenu(jsonObject.getString("menu"));
+                        temp.setFood_img(jsonObject.getString("food_img"));
+                        temp.setFood_category(jsonObject.getInt("food_category"));
+                        temp.setHashtag(jsonObject.getString("hashtag"));
+                        temp.setRate_avg(jsonObject.getDouble("rate_avg"));
+                        temp.setRate_total(jsonObject.getInt("rate_total"));
+                        temp.setRate_count(jsonObject.getInt("rate_count"));
+                        temp.setScode(jsonObject.getInt("scode"));
+                        //Log.d("json", temp.getRestaurant_name());
+
+                        adapter.addItem(temp);
+
+                        adapter.notifyDataSetChanged();
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

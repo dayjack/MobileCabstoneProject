@@ -18,6 +18,13 @@ public class RestaurantListAdapter extends BaseAdapter {
     Context context;
 
     @Override
+    public String toString() {
+        return "RestaurantListAdapter{" +
+                "items=" + items +
+                '}';
+    }
+
+    @Override
     public int getCount() {
         return items.size();
     }
@@ -47,7 +54,7 @@ public class RestaurantListAdapter extends BaseAdapter {
         TextView categoryText = view.findViewById(R.id.list_restaurant_category);
         TextView rateText = view.findViewById(R.id.list_restaurant_rate);
 
-        nameText.setText(restaurantListData.getName());
+        nameText.setText(restaurantListData.getRestaurant_name());
         categoryText.setText(restaurantListData.categoryToString());
         rateText.setText(restaurantListData.getRateString());
 
