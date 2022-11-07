@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/drawable/border.xml" value="0.3445" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.11851851851851852" />
+        <entry key="app/src/main/res/layout/category_gridlayout.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/fragment_board.xml" value="0.2105978260869565" />
+        <entry key="app/src/main/res/layout/fragment_restaurant_info.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/layout/fragment_restaurant_list.xml" value="0.2105978260869565" />
+        <entry key="app/src/main/res/layout/fragment_restaurant_review.xml" value="0.37604166666666666" />
+        <entry key="app/src/main/res/layout/fragment_restaurantmenu.xml" value="0.37604166666666666" />
+        <entry key="app/src/main/res/layout/mainpage.xml" value="0.3446557971014493" />
+        <entry key="app/src/main/res/layout/postrecycler_item.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/register.xml" value="0.3446557971014493" />
+        <entry key="app/src/main/res/layout/register_detail.xml" value="0.3446557971014493" />
+        <entry key="app/src/main/res/layout/restaurant_info.xml" value="0.2105978260869565" />
+        <entry key="app/src/main/res/layout/restaurant_list.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/restaurant_list_item.xml" value="0.375" />
+        <entry key="app/src/main/res/menu/bottom_navigation_items.xml" value="0.375" />
+        <entry key="app/src/main/res/menu/list_menu.xml" value="0.37604166666666666" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
