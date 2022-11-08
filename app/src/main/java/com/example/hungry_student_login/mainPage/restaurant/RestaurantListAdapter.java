@@ -62,7 +62,6 @@ public class RestaurantListAdapter extends BaseAdapter {
         TextView categoryText = view.findViewById(R.id.list_restaurant_category);
         TextView rateText = view.findViewById(R.id.list_restaurant_rate);
         ImageView imageView = view.findViewById(R.id.restaurant_thumbnail);
-
         new Thread() {
             String imgurl = "http://43.206.19.165";
 
