@@ -11,6 +11,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager.widget.ViewPager;
 
 import com.example.hungry_student_login.R;
 import com.example.hungry_student_login.mainPage.restaurant.fragment.RestaurantInfoFragment;
@@ -29,6 +30,9 @@ public class RestaurantInfoPage extends AppCompatActivity {
     RestaurantInfoFragment restaurantInfoFragment = new RestaurantInfoFragment();
     RestaurantReviewFragment  restaurantReviewFragment = new RestaurantReviewFragment();
 
+
+    ViewPager pager;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +48,6 @@ public class RestaurantInfoPage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 getSupportFragmentManager().beginTransaction().replace(R.id.restaurant_info_fragment_container, restaurantmenuFragment).commit();
-
             }
         });
         findViewById(R.id.restaurant_info_btn).setOnClickListener(new View.OnClickListener() {
