@@ -12,6 +12,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.hungry_student_login.R;
 import com.example.hungry_student_login.data.RestaurantListData;
 
@@ -63,10 +66,6 @@ public class RestaurantListAdapter extends BaseAdapter {
         TextView categoryText = view.findViewById(R.id.list_restaurant_category);
         TextView rateText = view.findViewById(R.id.list_restaurant_rate);
         ImageView imageView = view.findViewById(R.id.restaurant_thumbnail);
-
-
-
-
         String imgurl = "http://43.206.19.165";
 
         try {
@@ -79,7 +78,7 @@ public class RestaurantListAdapter extends BaseAdapter {
             imgurl.concat(substringtemp);
             imgurl = "" + imgurl + substringtemp;
             Log.d("img", "imgurl: " + imgurl);
-            Glide.with(view).load(imgurl).into(imageView);
+            Glide.with(view).load(imgurl).circleCrop().into(imageView);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -93,4 +92,6 @@ public class RestaurantListAdapter extends BaseAdapter {
     public void addItem(RestaurantListData restaurantListData) {
         items.add(restaurantListData);
     }
+
+
 }

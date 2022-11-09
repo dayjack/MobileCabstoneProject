@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,11 +14,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.hungry_student_login.R;
+import com.example.hungry_student_login.data.CategoryData;
 import com.example.hungry_student_login.data.RestaurantListData;
 import com.example.hungry_student_login.mainPage.restaurant.RestaurantInfoPage;
 import com.example.hungry_student_login.mainPage.restaurant.RestaurantListAdapter;
@@ -35,6 +38,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -43,13 +47,15 @@ import java.util.ArrayList;
  */
 public class RestaurantListFragment extends Fragment {
 
+
+
     String receiveMsg;
-    //ArrayList<RestaurantListData> restaurantListDataArrayList;
+    ListView listView;
     RestaurantListAdapter adapter = new RestaurantListAdapter();
-    String url = "http://43.206.19.165/2016041085/restaurantlist.php";
-
-
-
+    int restaurant_id = 0;
+    int scode = 0;
+    String url = "http://43.206.19.165/2016041085" +
+            "/restaurantlist.php?category="+CategoryData.category+"&restaurant_id="+restaurant_id+"&scode="+scode;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -104,10 +110,61 @@ public class RestaurantListFragment extends Fragment {
         LayoutInflater categoryInflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         categoryInflater.inflate(R.layout.category_gridlayout, categoryFrame, true);
 
-        ListView listView = v.findViewById(R.id.restaurant_list);
+        Button all = v.findViewById(R.id.all);
+        Button chinese = v.findViewById(R.id.chinese);
+        Button korean = v.findViewById(R.id.korean);
+        Button japanese = v.findViewById(R.id.japanese);
+        Button western = v.findViewById(R.id.western);
+        Button etc = v.findViewById(R.id.ect);
 
+        all.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CategoryData.category = 0;
+                refresh();
+            }
+        });
+        chinese.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CategoryData.category = 1;
+                refresh();
+            }
+        });
+        korean.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CategoryData.category = 2;
+                refresh();
+            }
+        });
+        japanese.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CategoryData.category = 3;
+                refresh();
+            }
+        });
+        western.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CategoryData.category = 4;
+                refresh();
+            }
+        });
+        etc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CategoryData.category = 5;
+                refresh();
+            }
+        });
+        Log.d("tab", "refresh: "+url);
+        listView = v.findViewById(R.id.restaurant_list);
         listView.setAdapter(adapter);
+
         new DownloadWebpageTask().execute(url);
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -192,4 +249,17 @@ public class RestaurantListFragment extends Fragment {
             }
         }
     }
+
+    private void refresh() {
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.detach(this).attach(this).commit();
+        this.url = "http://43.206.19.165/2016041085" +
+                "/restaurantlist.php?category="+CategoryData.category+"&restaurant_id="+restaurant_id+"&scode="+scode;
+        adapter = new RestaurantListAdapter();
+        new DownloadWebpageTask().execute(url);
+        adapter.notifyDataSetChanged();
+        listView.setAdapter(adapter);
+    }
+
+
 }

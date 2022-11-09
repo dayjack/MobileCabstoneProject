@@ -8,46 +8,44 @@
     <ImageView
         android:id="@+id/restaurant_thumbnail"
         android:layout_width="150dp"
-        android:layout_height="match_parent"
+        android:layout_height="100dp"
+        android:scaleType="centerCrop"
         android:src="@drawable/test_image"
         android:adjustViewBounds="true"
         android:layout_gravity="left"
         android:layout_weight="1"
-        ></ImageView>
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_weight="4">
+        android:layout_weight="4"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/list_restaurant_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_weight="2"
-            >
-        </TextView>
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="30dp"
+            android:layout_weight="2"/>
 
         <TextView
             android:id="@+id/list_restaurant_category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_weight="1">
-
-        </TextView>
+            android:layout_marginLeft="30dp"
+            android:layout_weight="1"/>
 
         <TextView
             android:id="@+id/list_restaurant_rate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_weight="1">
-        </TextView>
-
-
+            android:layout_marginLeft="30dp"
+            android:layout_weight="1"/>
 
 
     </LinearLayout>
