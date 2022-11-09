@@ -11,6 +11,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.hungry_student_login.R;
 import com.example.hungry_student_login.data.RestaurantListData;
 
@@ -62,33 +63,26 @@ public class RestaurantListAdapter extends BaseAdapter {
         TextView categoryText = view.findViewById(R.id.list_restaurant_category);
         TextView rateText = view.findViewById(R.id.list_restaurant_rate);
         ImageView imageView = view.findViewById(R.id.restaurant_thumbnail);
-        new Thread() {
-            String imgurl = "http://43.206.19.165";
 
-            @Override
-            public void run() {
-                try {
-                    Log.d("img", "img: " + restaurantListData.getFood_img());
-                    JSONArray jsonArray = new JSONArray(restaurantListData.getFood_img());
 
-                    String temp = (String) jsonArray.get(0);
-                    Log.d("img", "temp: " + temp);
-                    String substringtemp = temp.substring(2);
-                    Log.d("img", "substringtemp: " + substringtemp);
-                    imgurl.concat(substringtemp);
-                    imgurl = "" + imgurl + substringtemp;
-                    Log.d("img", "imgurl: " + imgurl);
 
-                    URL url = new URL(imgurl);
-                    Bitmap bitmap = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-                    imageView.setImageBitmap(bitmap);
 
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }.start();
+        String imgurl = "http://43.206.19.165";
 
+        try {
+            Log.d("img", "img: " + restaurantListData.getFood_img());
+            JSONArray jsonArray = new JSONArray(restaurantListData.getFood_img());
+            String temp = (String) jsonArray.get(0);
+            Log.d("img", "temp: " + temp);
+            String substringtemp = temp.substring(2);
+            Log.d("img", "substringtemp: " + substringtemp);
+            imgurl.concat(substringtemp);
+            imgurl = "" + imgurl + substringtemp;
+            Log.d("img", "imgurl: " + imgurl);
+            Glide.with(view).load(imgurl).into(imageView);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         nameText.setText(restaurantListData.getRestaurant_name());
         categoryText.setText(restaurantListData.categoryToString());
         rateText.setText(restaurantListData.getRateString());
@@ -99,6 +93,4 @@ public class RestaurantListAdapter extends BaseAdapter {
     public void addItem(RestaurantListData restaurantListData) {
         items.add(restaurantListData);
     }
-
-
 }

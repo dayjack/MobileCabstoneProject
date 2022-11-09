@@ -149,47 +149,44 @@ public class RestaurantListFragment extends Fragment {
         //ui변경 작업 실행
         @Override
         protected void onPostExecute(String result) {
-
             try {
-                JSONArray jsonArray = new JSONArray(result);
-                if (jsonArray == null) {
-                    Toast.makeText(getContext(), "null", Toast.LENGTH_SHORT).show();
-                }
+                Log.d("test", "onPostExecute: "+adapter.getCount());
+                if (adapter.getCount() == 0) {
+                    JSONArray jsonArray = new JSONArray(result);
+                    if (jsonArray == null) {
+                        Toast.makeText(getContext(), "null", Toast.LENGTH_SHORT).show();
+                    }
+                    for (int i=0; i < jsonArray.length(); i++) {
+                        try {
+                            Log.d("json", "try "+i);
+                            JSONObject jsonObject = jsonArray.getJSONObject(i);
+                            RestaurantListData temp = new RestaurantListData();
 
-                for (int i=0; i < jsonArray.length(); i++) {
+                            // Pulling items from the array
+                            temp.setRestaurant_id(jsonObject.getInt("restaurant_id"));
+                            temp.setCrn(jsonObject.getInt("crn"));
+                            temp.setRestaurant_name(jsonObject.getString("restaurant_name"));
+                            temp.setEmail(jsonObject.getString("email"));
+                            temp.setAddress(jsonObject.getString("address"));
+                            temp.setRestaurant_info(jsonObject.getString("restaurant_info"));
+                            temp.setMenu(jsonObject.getString("menu"));
+                            temp.setFood_img(jsonObject.getString("food_img"));
+                            temp.setFood_category(jsonObject.getInt("food_category"));
+                            temp.setHashtag(jsonObject.getString("hashtag"));
+                            temp.setRate_avg(jsonObject.getDouble("rate_avg"));
+                            temp.setRate_total(jsonObject.getInt("rate_total"));
+                            temp.setRate_count(jsonObject.getInt("rate_count"));
+                            temp.setScode(jsonObject.getInt("scode"));
+                            //Log.d("json", temp.getRestaurant_name());
 
+                            adapter.addItem(temp);
+                            adapter.notifyDataSetChanged();
 
-                    try {
-                        Log.d("json", "try "+i);
-                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        RestaurantListData temp = new RestaurantListData();
-
-                        // Pulling items from the array
-                        temp.setRestaurant_id(jsonObject.getInt("restaurant_id"));
-                        temp.setCrn(jsonObject.getInt("crn"));
-                        temp.setRestaurant_name(jsonObject.getString("restaurant_name"));
-                        temp.setEmail(jsonObject.getString("email"));
-                        temp.setAddress(jsonObject.getString("address"));
-                        temp.setRestaurant_info(jsonObject.getString("restaurant_info"));
-                        temp.setMenu(jsonObject.getString("menu"));
-                        temp.setFood_img(jsonObject.getString("food_img"));
-                        temp.setFood_category(jsonObject.getInt("food_category"));
-                        temp.setHashtag(jsonObject.getString("hashtag"));
-                        temp.setRate_avg(jsonObject.getDouble("rate_avg"));
-                        temp.setRate_total(jsonObject.getInt("rate_total"));
-                        temp.setRate_count(jsonObject.getInt("rate_count"));
-                        temp.setScode(jsonObject.getInt("scode"));
-                        //Log.d("json", temp.getRestaurant_name());
-
-                        adapter.addItem(temp);
-
-                        adapter.notifyDataSetChanged();
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
