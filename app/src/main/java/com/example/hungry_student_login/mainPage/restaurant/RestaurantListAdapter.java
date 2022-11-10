@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -71,6 +72,7 @@ public class RestaurantListAdapter extends BaseAdapter {
         TextView rateText = view.findViewById(R.id.list_restaurant_rate);
         TextView idText = view.findViewById(R.id.list_restaurant_id);
         ImageView imageView = view.findViewById(R.id.restaurant_thumbnail);
+        RatingBar ratingBar = view.findViewById(R.id.list_restaurant_rating);
         String imgurl = "http://43.206.19.165";
 
         try {
@@ -91,6 +93,7 @@ public class RestaurantListAdapter extends BaseAdapter {
         nameText.setText(restaurantListData.getRestaurant_name());
         categoryText.setText(restaurantListData.categoryToString());
         rateText.setText(restaurantListData.getRateString());
+        ratingBar.setRating((float) restaurantListData.getRate_avg());
         idText.setText(""+restaurantListData.getRestaurant_id());
 
         return view;

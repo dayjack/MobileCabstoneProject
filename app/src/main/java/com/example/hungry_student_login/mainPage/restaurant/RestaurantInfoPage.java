@@ -100,7 +100,12 @@ public class RestaurantInfoPage extends AppCompatActivity {
         findViewById(R.id.restaurant_review_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getSupportFragmentManager().beginTransaction().replace(R.id.restaurant_info_fragment_container, restaurantReviewFragment).commit();
+
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                Bundle bundle = new Bundle();
+                bundle.putInt("review", restaurantListData.getRestaurant_id());
+                restaurantReviewFragment.setArguments(bundle);
+                transaction.replace(R.id.restaurant_info_fragment_container, restaurantReviewFragment).commit();
             }
         });
 
@@ -113,6 +118,11 @@ public class RestaurantInfoPage extends AppCompatActivity {
         new DownloadWebpageTask().execute(url);
 
     }
+
+
+
+
+
 
     private class DownloadWebpageTask extends AsyncTask<String, Void, String> {
         //주요 내용 실행

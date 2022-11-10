@@ -34,6 +34,7 @@
             android:numStars="5"
             android:rating="2"
             android:layout_gravity="center"
+            android:isIndicator="true"
             />
 
 
