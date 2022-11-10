@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.hungry_student_login.R;
 import com.example.hungry_student_login.data.CategoryData;
@@ -36,6 +37,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class RestaurantInfoPage extends AppCompatActivity {
 
@@ -51,6 +53,10 @@ public class RestaurantInfoPage extends AppCompatActivity {
 
     TextView restaurantNameText;
     RatingBar ratingBar;
+    ViewPager pager;
+    RestaurnatImgPagerAdapter imgPagerAdapter;
+
+
 
     String receiveMsg;
     ListView listView;
@@ -61,7 +67,7 @@ public class RestaurantInfoPage extends AppCompatActivity {
     int restaurant_id = 0;
     int scode = 0;
 
-    ViewPager pager;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -105,7 +111,6 @@ public class RestaurantInfoPage extends AppCompatActivity {
         restaurantNameText = findViewById(R.id.restaurant_name);
         ratingBar = findViewById(R.id.restaurant_rating);
         new DownloadWebpageTask().execute(url);
-
 
     }
 
@@ -179,6 +184,23 @@ public class RestaurantInfoPage extends AppCompatActivity {
             bundle.putString("menu", restaurantListData.getMenu());
             restaurantmenuFragment.setArguments(bundle);
             transaction.replace(R.id.restaurant_info_fragment_container, restaurantmenuFragment).commit();
+
+            int count = 0;
+            ArrayList<String> urls = new ArrayList<>();
+            pager = findViewById(R.id.restaurant_info_viewpager);
+
+            try {
+                JSONArray jsonArray = new JSONArray(restaurantListData.getFood_img());
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    urls.add((String) jsonArray.get(i));
+                    count++;
+                    Log.d("pager", "onPostExecute: " + urls.get(i));
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            imgPagerAdapter = new RestaurnatImgPagerAdapter(getApplicationContext(), count, urls);
+            pager.setAdapter(imgPagerAdapter);
         }
     }
 }
