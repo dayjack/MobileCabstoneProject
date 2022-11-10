@@ -27,6 +27,7 @@
             android:text="김밥천국 명지전문대점"
             />
         <RatingBar
+            android:id="@+id/restaurant_rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:numStars="5"

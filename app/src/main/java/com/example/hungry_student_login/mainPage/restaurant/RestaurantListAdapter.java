@@ -36,6 +36,10 @@ public class RestaurantListAdapter extends BaseAdapter {
                 '}';
     }
 
+    public ArrayList<RestaurantListData> getItems() {
+        return items;
+    }
+
     @Override
     public int getCount() {
         return items.size();
@@ -65,6 +69,7 @@ public class RestaurantListAdapter extends BaseAdapter {
         TextView nameText = view.findViewById(R.id.list_restaurant_name);
         TextView categoryText = view.findViewById(R.id.list_restaurant_category);
         TextView rateText = view.findViewById(R.id.list_restaurant_rate);
+        TextView idText = view.findViewById(R.id.list_restaurant_id);
         ImageView imageView = view.findViewById(R.id.restaurant_thumbnail);
         String imgurl = "http://43.206.19.165";
 
@@ -82,9 +87,11 @@ public class RestaurantListAdapter extends BaseAdapter {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         nameText.setText(restaurantListData.getRestaurant_name());
         categoryText.setText(restaurantListData.categoryToString());
         rateText.setText(restaurantListData.getRateString());
+        idText.setText(""+restaurantListData.getRestaurant_id());
 
         return view;
     }

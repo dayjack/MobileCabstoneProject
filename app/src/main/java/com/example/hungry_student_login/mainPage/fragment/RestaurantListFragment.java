@@ -170,6 +170,7 @@ public class RestaurantListFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                 Intent intent = new Intent(getContext(), RestaurantInfoPage.class);
+                intent.putExtra("restaurant_id", adapter.getItems().get(i).getRestaurant_id());
                 startActivity(intent);
             }
         });

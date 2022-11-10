@@ -25,6 +25,29 @@ public class RestaurantListData {
     int rate_count;
     int scode;
 
+    public double getRate_avg() {
+        return rate_avg;
+    }
+
+    @Override
+    public String toString() {
+        return "RestaurantListData{" +
+                "restaurant_id=" + restaurant_id +
+                ", crn=" + crn +
+                ", restaurant_name='" + restaurant_name + '\'' +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                ", restaurant_info='" + restaurant_info + '\'' +
+                ", menu='" + menu + '\'' +
+                ", food_img='" + food_img + '\'' +
+                ", food_category=" + food_category +
+                ", hashtag='" + hashtag + '\'' +
+                ", rate_avg=" + rate_avg +
+                ", rate_total=" + rate_total +
+                ", rate_count=" + rate_count +
+                ", scode=" + scode +
+                '}';
+    }
 
     public String getHashtag() {
         return hashtag;
