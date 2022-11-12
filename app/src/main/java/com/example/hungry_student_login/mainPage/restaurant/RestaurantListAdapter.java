@@ -90,6 +90,7 @@ public class RestaurantListAdapter extends BaseAdapter {
             e.printStackTrace();
         }
 
+
         nameText.setText(restaurantListData.getRestaurant_name());
         categoryText.setText(restaurantListData.categoryToString());
         float rate_avg = (float) (Math.round(restaurantListData.getRate_avg()*100)/100.0);
