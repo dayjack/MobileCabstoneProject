@@ -8,7 +8,7 @@
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <TextView
@@ -18,25 +18,31 @@
             android:textAlignment="center" />
 
         <EditText
+            android:id="@+id/review_content_commit"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="150dp"
+            />
 
         <RatingBar
+            android:id="@+id/review_rate_commit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:numStars="5" />
 
         <Button
+            android:id="@+id/review_commit"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
+            android:layout_height="wrap_content"
+            android:text="리뷰 등록"/>
         <ListView
             android:id="@+id/restaurant_review_list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent" />
 
     </LinearLayout>
+
+
 
 
 </FrameLayout>

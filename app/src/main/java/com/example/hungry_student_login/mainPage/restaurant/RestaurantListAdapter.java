@@ -92,8 +92,9 @@ public class RestaurantListAdapter extends BaseAdapter {
 
         nameText.setText(restaurantListData.getRestaurant_name());
         categoryText.setText(restaurantListData.categoryToString());
-        rateText.setText(restaurantListData.getRateString());
-        ratingBar.setRating((float) restaurantListData.getRate_avg());
+        float rate_avg = (float) (Math.round(restaurantListData.getRate_avg()*100)/100.0);
+        rateText.setText(""+rate_avg);
+        ratingBar.setRating((float) (Math.round(restaurantListData.getRate_avg()*100)/100.0));
         idText.setText(""+restaurantListData.getRestaurant_id());
 
         return view;

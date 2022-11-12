@@ -1,5 +1,6 @@
 package com.example.hungry_student_login.mainPage.restaurant.fragment;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -7,9 +8,16 @@ import androidx.fragment.app.Fragment;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.RatingBar;
+import android.widget.ScrollView;
+import android.widget.Toast;
 
 import com.example.hungry_student_login.R;
 import com.example.hungry_student_login.data.CategoryData;
@@ -23,9 +31,13 @@ import org.json.JSONObject;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -45,6 +57,11 @@ public class RestaurantReviewFragment extends Fragment {
 
     ListView listView;
     ReviewListAdapter adapter;
+
+    EditText editContent;
+    RatingBar ratingBar;
+    Button button;
+    ScrollView scrollView;
 
     private static final String TAG = "review";
 
@@ -103,9 +120,133 @@ public class RestaurantReviewFragment extends Fragment {
         listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
+        editContent = v.findViewById(R.id.review_content_commit);
+        ratingBar = v.findViewById(R.id.review_rate_commit);
+        button = v.findViewById(R.id.review_commit);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Log.d("commit", "onClick: "+"버튼 툴림");
+                new ReviewCommit().execute("http://43.206.19.165/2016041085/writereview.php");
+
+            }
+        });
+
+
 
         return v;
     }
+
+    public static boolean setListViewHeightBasedOnItems(ListView listView) {
+
+        ReviewListAdapter listAdapter = (ReviewListAdapter) listView.getAdapter();
+        if (listAdapter != null) {
+
+            int numberOfItems = listAdapter.getCount();
+            Log.d("list", "setListViewHeightBasedOnItems: " + numberOfItems);
+            // Get total height of all items.
+            int totalItemsHeight = 0;
+            for (int itemPos = 0; itemPos < numberOfItems; itemPos++) {
+                View item = listAdapter.getView(itemPos, null, listView);
+                float px = 500 * (listView.getResources().getDisplayMetrics().density);
+                item.measure(View.MeasureSpec.makeMeasureSpec((int) px, View.MeasureSpec.AT_MOST), View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+                totalItemsHeight += item.getMeasuredHeight();
+            }
+
+            // Get total height of all item dividers.
+            int totalDividersHeight = listView.getDividerHeight() *
+                    (numberOfItems - 1);
+            // Get padding
+            int totalPadding = listView.getPaddingTop() + listView.getPaddingBottom();
+
+            // Set list height.
+            ViewGroup.LayoutParams params = listView.getLayoutParams();
+            params.height = totalItemsHeight + totalDividersHeight + totalPadding;
+            Log.d("list", "setListViewHeightBasedOnItems: " + params.height);
+            listView.setLayoutParams(params);
+            listView.requestLayout();
+            //setDynamicHeight(listView);
+            return true;
+
+        } else {
+            return false;
+        }
+    }
+
+
+
+    private class ReviewCommit extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... strings) {
+
+            String serverURL = "http://43.206.19.165/2016041085/writereview.php";
+
+            String parameters = "restaurant_id=" + CategoryData.restaurant_id +
+                    "&vcontent=" + editContent.getText().toString() + "&rate=" + ratingBar.getRating()+"&nickname=nickname";
+            Log.d("commit", "doInBackground: " + parameters);
+
+            HttpURLConnection conn;
+            try {
+                URL text = new URL(serverURL);
+                conn = (HttpURLConnection) text.openConnection();
+
+
+                conn.setReadTimeout(5000);
+                conn.setConnectTimeout(5000);
+                conn.setRequestMethod("POST");
+                conn.connect();
+
+                OutputStream outputStream = conn.getOutputStream();
+                outputStream.write(parameters.getBytes("UTF-8"));
+                outputStream.flush();
+                outputStream.close();
+
+                int responseStatusCode = conn.getResponseCode();
+                Log.d("commit", "status : " + responseStatusCode);
+
+                InputStream inputStream;
+                if (responseStatusCode == HttpURLConnection.HTTP_OK) {
+                    inputStream = conn.getInputStream();
+                } else {
+                    inputStream = conn.getErrorStream();
+                }
+
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                StringBuilder sb = new StringBuilder();
+                String line = null;
+
+                while ((line = bufferedReader.readLine()) != null) {
+                    sb.append(line);
+                }
+                bufferedReader.close();
+                Log.d("commit", "doInBackground: " + sb.toString());
+                return sb.toString();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            editContent.setText("");
+            ratingBar.setRating(0);
+            Toast.makeText(getContext(), "등록되었습니다.", Toast.LENGTH_LONG).show();
+            adapter.notifyDataSetChanged();
+        }
+    }
+
+
+
+
+
 
     private class DownloadReviewPage extends AsyncTask<String, Void, String> {
         @Override
@@ -152,12 +293,14 @@ public class RestaurantReviewFragment extends Fragment {
                         temp.setRate((float) jsonObject.getDouble("rate"));
                         temp.setNickname(jsonObject.getString("nickname"));
                         adapter.addItem(temp);
+
                         adapter.notifyDataSetChanged();
 
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
+                setListViewHeightBasedOnItems(listView);
             } catch (JSONException jsonException) {
                 jsonException.printStackTrace();
             }
