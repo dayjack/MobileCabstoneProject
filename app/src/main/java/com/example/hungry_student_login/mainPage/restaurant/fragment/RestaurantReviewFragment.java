@@ -293,7 +293,6 @@ public class RestaurantReviewFragment extends Fragment {
                         temp.setRate((float) jsonObject.getDouble("rate"));
                         temp.setNickname(jsonObject.getString("nickname"));
                         adapter.addItem(temp);
-
                         adapter.notifyDataSetChanged();
 
                     } catch (Exception e) {
