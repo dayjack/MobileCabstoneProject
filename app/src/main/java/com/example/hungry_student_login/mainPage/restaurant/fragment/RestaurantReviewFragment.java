@@ -136,7 +136,6 @@ public class RestaurantReviewFragment extends Fragment {
         return v;
     }
 
-
     public static boolean setListViewHeightBasedOnItems(ListView listView) {
 
         ReviewListAdapter listAdapter = (ReviewListAdapter) listView.getAdapter();
