@@ -133,9 +133,6 @@ public class RestaurantReviewFragment extends Fragment {
 
             }
         });
-
-
-
         return v;
     }
 
