@@ -276,6 +276,7 @@ public class RestaurantReviewFragment extends Fragment {
             }
         }
 
+
         //ui변경 작업 실행
         @Override
         protected void onPostExecute(String result) {
