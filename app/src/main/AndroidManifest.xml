@@ -31,6 +31,17 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".mainPage.restaurant.MainPage"/>
         </activity>
+        <activity android:name=".mainPage.Board.PostActicity" android:label="Post">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".mainPage.restaurant.MainPage"/>
+        </activity>
+        <activity android:name=".mainPage.Board.BoardWriteActivity" android:label="PostWrite">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".mainPage.restaurant.MainPage"/>
+        </activity>
+
 
 
 

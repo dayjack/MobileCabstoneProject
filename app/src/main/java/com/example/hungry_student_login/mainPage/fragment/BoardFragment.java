@@ -1,27 +1,44 @@
 package com.example.hungry_student_login.mainPage.fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.hungry_student_login.R;
 import com.example.hungry_student_login.data.Post;
 import com.example.hungry_student_login.data.RestaurantListData;
+import com.example.hungry_student_login.mainPage.Board.BoardWriteActivity;
 import com.example.hungry_student_login.mainPage.Board.PostAdapter;
 import com.example.hungry_student_login.mainPage.restaurant.RestaurantInfoPage;
 import com.example.hungry_student_login.mainPage.restaurant.RestaurantListAdapter;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +51,13 @@ public class BoardFragment extends Fragment {
 
     RecyclerView postRecyclerView;
     PostAdapter postAdapter;
+    List<Post> postList = new ArrayList<>();
+
+    TextView free_board;
+    ImageView create_icon;
+
+    String url = "http://43.206.19.165/2016041085/postlist.php";
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -82,19 +106,106 @@ public class BoardFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_board, container, false);
         postRecyclerView = v.findViewById(R.id.posted_writing);
-        postAdapter = new PostAdapter(sample());
-        postRecyclerView.setAdapter(postAdapter);
-        postRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+//        free_board = v.findViewById(R.id.free_board);
+        free_board = v.findViewById(R.id.free_board);
+        create_icon = v.findViewById(R.id.create_icon);
+
+        /**
+         * create_icon -> BoardCreateFragment ???
+         */
+        create_icon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getContext(), "BoardCreateFragment", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getContext(), BoardWriteActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        new DownloadPostTask().execute(url);
 
         return v;
-
     }
-    private List<Post> sample() {
-        List<Post> postList = new ArrayList<>();
-        postList.add(new Post("같이 밥 먹을사람", "나 우주공강인데 같이 밥 먹을 사람 구함~~~", "5분전", "1호",  2));
-        postList.add(new Post("혼밥하기 좋은 식당 찾아줘", "나 친구 없어서..", "6분전", "1호",  0));
-        postList.add(new Post("학교 주변에 파스타집 있어?", "학교 끝나고 남친이랑 파스타집 가려는 학교 근처에 ", "8분전", "1호",  1));
-        postList.add(new Post("메가 커피 명지전문대점 이벤트!", "명지전문대 학생증 제시하면 10프로 할인(~11/9)", "15분전", "1호",  0));
-        return postList;
+
+
+    private class DownloadPostTask extends AsyncTask<String, Void, String> {
+        //주요 내용 실행
+        @Override
+        protected String doInBackground(String... urls) {
+            try {
+                return (String)downloadUrl((String)urls[0]);
+            } catch (IOException e) {
+                return "다운로드 실패";
+            }
+        }
+        private String downloadUrl(String myurl) throws IOException {
+            HttpURLConnection conn = null;
+            try {
+                URL url = new URL(myurl);
+                conn = (HttpURLConnection) url.openConnection();
+                BufferedInputStream buf = new BufferedInputStream(conn.getInputStream());
+                BufferedReader bufreader = new BufferedReader(new InputStreamReader(buf, "utf-8"));
+                String line = null;
+                String page = "";
+                while((line = bufreader.readLine()) != null) {
+                    page += line;
+                }
+                Log.d("json", "downloadUrl: "+page);
+                return page;
+            } finally {
+                conn.disconnect();
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            postAdapter = new PostAdapter();
+            try {
+                Log.d("post", "onPostExecute: "+postAdapter.getItemCount());
+                Log.d("post", "onPostExecute: "+result);
+                if (postAdapter.getItemCount() == 0) {
+                    JSONArray jsonArray = new JSONArray(result);
+                    if (jsonArray == null) {
+                        Toast.makeText(getContext(), "null", Toast.LENGTH_SHORT).show();
+                    }
+                    postList = new ArrayList<>();
+                    for (int i=0; i < jsonArray.length(); i++) {
+                        try {
+
+                            JSONObject jsonObject = jsonArray.getJSONObject(i);
+                            RestaurantListData temp = new RestaurantListData();
+                            Post post = new Post();
+
+                            post.setPnum(jsonObject.getInt("pnum"));
+                            post.setNickname(jsonObject.getString("nickname"));
+                            post.setPtitle(jsonObject.getString("ptitle"));
+                            post.setPcontent(jsonObject.getString("pcontent"));
+                            post.setPtime(jsonObject.getString("ptime"));
+                            post.setScode(jsonObject.getInt("scode"));
+                            postList.add(post);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    Log.d("post", "postList:  " + postList.get(0).toString());
+                    postAdapter.setPostList(postList);
+                    Log.d("post", "postList:  " + postAdapter.getItemCount());
+                    postRecyclerView.setAdapter(postAdapter);
+                    postRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                    postAdapter.notifyDataSetChanged();
+
+                    refresh();
+
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void refresh() {
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.detach(this).attach(this).commit();
     }
 }
