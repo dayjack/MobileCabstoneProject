@@ -7,15 +7,22 @@
     <TextView
         android:id="@+id/review_content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:fontFamily="@font/nanumsquareroundb"
+        />
     <TextView
         android:id="@+id/review_time"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:fontFamily="@font/nanumsquareroundb"/>
     <TextView
         android:id="@+id/review_nickname"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:fontFamily="@font/nanumsquareroundb"/>
     <RatingBar
         android:id="@+id/review_rate"
         android:layout_width="wrap_content"

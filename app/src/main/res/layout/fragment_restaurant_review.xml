@@ -15,7 +15,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="리뷰쓰기"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:fontFamily="@font/nanumsquareroundb"
+            />
 
         <EditText
             android:id="@+id/review_content_commit"
@@ -34,6 +37,8 @@
             android:id="@+id/review_commit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:fontFamily="@font/nanumsquareroundb"
             android:text="리뷰 등록"/>
         <ListView
             android:id="@+id/restaurant_review_list"

@@ -19,7 +19,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="4"
+        android:layout_weight="5"
         android:orientation="vertical">
 
         <TextView
@@ -27,9 +27,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
             android:layout_marginLeft="30dp"
-            android:layout_weight="2"/>
+            android:layout_weight="2"
+            android:textColor="@color/black"
+            android:fontFamily="@font/nanumsquareroundb"
+            />
+        <TextView
+            android:id="@+id/list_restaurant_hashtag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:textColor="#00d4ff"
+            android:fontFamily="@font/nanumsquareroundb"
+            android:text="해시태그"
+            android:layout_weight="1"
+            android:layout_marginTop="3dp"
+            />
 
         <TextView
             android:id="@+id/list_restaurant_category"
@@ -37,12 +51,16 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="30dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            android:fontFamily="@font/nanumsquareroundb"
+            android:layout_marginTop="3dp"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:orientation="horizontal"
-            android:layout_weight="1">
+            android:layout_marginTop="10dp"
+            >
 
             <RatingBar
                 android:id="@+id/list_restaurant_rating"
@@ -52,6 +70,7 @@
                 android:numStars="5"
                 android:layout_marginLeft="30dp"
                 android:isIndicator="true"
+                android:layout_marginTop="3dp"
                 />
 
             <TextView
@@ -59,24 +78,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/nanumsquareroundb"
+                android:layout_marginTop="3dp"
                 />
-
         </LinearLayout>
-
-
-
         <TextView
             android:id="@+id/list_restaurant_id"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="30dp"
-            android:layout_weight="1"
             android:visibility="invisible"
             />
-
-
-
     </LinearLayout>
 
 </LinearLayout>

@@ -4,54 +4,117 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/post_tittle"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginLeft="2dp"
+            android:fontFamily="@font/nanumsquareroundb"
+            android:text="게시판"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:layout_marginTop="5dp"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+        <!--            아이콘 못 찾아서 이거 썼어요-->
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="제목"
-        android:textSize="30dp" />
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="horizontal">
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="left"
-        android:text="닉네임 : "
-        android:textSize="20dp" />
 
-    <TextView
-        android:id="@+id/post_nickname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="left"
-        android:text="닉네임"
-        android:textSize="20dp" />
+        <TextView
+            android:id="@+id/post_tittle"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/transparent"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="left"
-        android:text="날짜 : "
-        android:textSize="20dp" />
+            android:fontFamily="@font/nanumsquareroundb"
+            android:hint="제목"
+            android:textColor="#A6A6A6"
+            android:textSize="30dp" />
 
-    <TextView
-        android:id="@+id/post_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="center_vertical|right"
-        android:text="날짜"
-        android:textSize="20dp" />
 
-    <TextView
-        android:id="@+id/post_content"
+    </LinearLayout>
+
+<!--    UserName-->
+
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="내용"
-        android:textSize="20dp" />
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/black" />
+
+        <TextView
+            android:id="@+id/post_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="left"
+            android:layout_marginBottom="5dp"
+            android:text="username"
+            android:textSize="20dp" />
+
+
+
+<!--        <TextView-->
+<!--            android:id="@+id/post_content"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:text="내용"-->
+<!--            android:textSize="20dp" />-->
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nanumsquareroundb"
+            android:height="300dp"
+            android:id="@+id/post_content"
+            android:background="@drawable/border_radius"
+            android:gravity="top"
+            android:hint="cotents"
+            android:padding="10dp">
+        </TextView>
+        <TextView
+            android:layout_gravity="right"
+            android:id="@+id/post_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center_vertical|right"
+            android:text="date"
+            android:textSize="20dp" />
+
+    </LinearLayout>
 
 </LinearLayout>

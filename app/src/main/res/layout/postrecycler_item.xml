@@ -75,6 +75,7 @@
             android:layout_marginRight="20dp"
             android:fontFamily="@font/nanumsquareroundb"
             android:text="0"
+            android:visibility="invisible"
             android:textSize="13dp"/>
 
     </LinearLayout>

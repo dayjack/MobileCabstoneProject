@@ -4,10 +4,12 @@
         android:id="@+id/restaurantlist_tab"
         android:icon="@android:drawable/ic_menu_search"
         android:title="식당"
+        android:fontFamily="@font/nanumsquareroundb"
         />
     <item
         android:id="@+id/board_tab"
         android:icon="@android:drawable/ic_menu_edit"
-        android:title="게시판"/>
+        android:title="게시판"
+        android:fontFamily="@font/nanumsquareroundb"/>
 
 </menu>

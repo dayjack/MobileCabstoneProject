@@ -73,6 +73,7 @@ public class RestaurantListAdapter extends BaseAdapter {
         TextView idText = view.findViewById(R.id.list_restaurant_id);
         ImageView imageView = view.findViewById(R.id.restaurant_thumbnail);
         RatingBar ratingBar = view.findViewById(R.id.list_restaurant_rating);
+        TextView hashtag = view.findViewById(R.id.list_restaurant_hashtag);
         String imgurl = "http://43.206.19.165";
 
         try {
@@ -86,6 +87,7 @@ public class RestaurantListAdapter extends BaseAdapter {
             imgurl = "" + imgurl + substringtemp;
             Log.d("img", "imgurl: " + imgurl);
             Glide.with(view).load(imgurl).circleCrop().into(imageView);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -97,6 +99,7 @@ public class RestaurantListAdapter extends BaseAdapter {
         rateText.setText(""+rate_avg);
         ratingBar.setRating((float) (Math.round(restaurantListData.getRate_avg()*100)/100.0));
         idText.setText(""+restaurantListData.getRestaurant_id());
+        hashtag.setText(restaurantListData.getHashtag());
 
         return view;
     }

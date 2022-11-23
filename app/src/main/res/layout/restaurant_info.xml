@@ -27,7 +27,9 @@
             android:textAlignment="center"
             android:textSize="28sp"
             android:textColor="@color/black"
+            android:fontFamily="@font/nanumsquareroundb"
             android:text="김밥천국 명지전문대점"
+            android:layout_marginTop="20dp"
             />
         <RatingBar
             android:id="@+id/restaurant_rating"
@@ -37,6 +39,7 @@
             android:rating="2"
             android:layout_gravity="center"
             android:isIndicator="true"
+            android:layout_marginTop="20dp"
             />
 
 
@@ -59,7 +62,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="메뉴"
-                    android:textColor="#000000" />
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/nanumsquareroundb"
+                    />
 
                 <Button
                     android:id="@+id/restaurant_info_btn"
@@ -68,7 +73,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="정보"
-                    android:textColor="#000000" />
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/nanumsquareroundb"
+                    />
 
                 <Button
                     android:id="@+id/restaurant_review_btn"
@@ -77,17 +84,21 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="리뷰"
-                    android:textColor="#000000" />
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/nanumsquareroundb"
+                    />
             </LinearLayout>
         </GridLayout>
-
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/black"
+            />
         <FrameLayout
             android:id="@+id/restaurant_info_fragment_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="15dp"/>
-
-
     </LinearLayout>
 </ScrollView>
 

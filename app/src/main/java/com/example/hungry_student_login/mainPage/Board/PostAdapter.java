@@ -83,12 +83,9 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
                 public void onClick(View view) {
                     Intent intent = new Intent(itemView.getContext(), PostActicity.class);
                     intent.putExtra("pnum", postList.get(getAdapterPosition()).getPnum());
-                    Toast.makeText(itemView.getContext(), "" + postList.get(getAdapterPosition()).getPnum(), Toast.LENGTH_LONG).show();
                     itemView.getContext().startActivity(intent);
                 }
             });
-
-
         }
 
         public void onBind(Post post) {
@@ -98,9 +95,5 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
             posted_username.setText(post.getNickname());
             pnum.setText(""+post.getPnum());
         }
-
-
     }
-
-
 }

@@ -17,7 +17,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             style="?android:attr/borderlessButtonStyle"
-            android:textColor="#000000"
+            android:textColor="@color/black"
+            android:fontFamily="@font/nanumsquareroundb"
             android:text="전체"
             />
         <Button
@@ -26,7 +27,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             style="?android:attr/borderlessButtonStyle"
-            android:textColor="#000000"
+            android:textColor="@color/black"
+            android:fontFamily="@font/nanumsquareroundb"
             android:text="중식"
             >
         </Button>
@@ -36,7 +38,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             style="?android:attr/borderlessButtonStyle"
-            android:textColor="#000000"
+            android:textColor="@color/black"
+            android:fontFamily="@font/nanumsquareroundb"
             android:text="한식"
             >
         </Button>
@@ -46,7 +49,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             style="?android:attr/borderlessButtonStyle"
-            android:textColor="#000000"
+            android:textColor="@color/black"
+            android:fontFamily="@font/nanumsquareroundb"
             android:text="일식"
             >
         </Button>
@@ -56,7 +60,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             style="?android:attr/borderlessButtonStyle"
-            android:textColor="#000000"
+            android:textColor="@color/black"
+            android:fontFamily="@font/nanumsquareroundb"
             android:text="양식"
             >
         </Button>
@@ -66,7 +71,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             style="?android:attr/borderlessButtonStyle"
-            android:textColor="#000000"
+            android:textColor="@color/black"
+            android:fontFamily="@font/nanumsquareroundb"
             android:text="기타"
             >
         </Button>
