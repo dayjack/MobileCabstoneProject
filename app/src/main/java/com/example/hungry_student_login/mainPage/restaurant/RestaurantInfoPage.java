@@ -6,15 +6,16 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
@@ -55,6 +56,7 @@ public class RestaurantInfoPage extends AppCompatActivity {
     RatingBar ratingBar;
     ViewPager pager;
     RestaurnatImgPagerAdapter imgPagerAdapter;
+    ImageView inforeturn;
 
 
 
@@ -73,8 +75,15 @@ public class RestaurantInfoPage extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.restaurant_info);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
+
+        inforeturn = findViewById(R.id.info_return);
+        inforeturn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MainPage.class);
+                startActivity(intent);
+            }
+        });
 
 
         findViewById(R.id.restaurant_menu_btn).setOnClickListener(new View.OnClickListener() {

@@ -27,9 +27,7 @@
 
         <activity android:name=".mainPage.restaurant.MainPage" android:label="메인페이지"/>
         <activity android:name=".mainPage.restaurant.RestaurantInfoPage" android:label="식당정보">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".mainPage.restaurant.MainPage"/>
+
         </activity>
         <activity android:name=".mainPage.Board.PostActicity" android:label="Post">
             <meta-data

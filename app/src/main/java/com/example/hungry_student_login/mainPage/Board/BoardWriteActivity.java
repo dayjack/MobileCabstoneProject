@@ -27,6 +27,7 @@ public class BoardWriteActivity extends AppCompatActivity {
     ImageView createPost;
     EditText board_title;
     EditText board_content;
+    ImageView returnPost;
 
     String url = "";
 
@@ -42,6 +43,14 @@ public class BoardWriteActivity extends AppCompatActivity {
         createPost = findViewById(R.id.create_post_icon);
         board_title = findViewById(R.id.board_title);
         board_content = findViewById(R.id.board_content);
+        returnPost = findViewById(R.id.post_write_return);
+        returnPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MainPage.class);
+                startActivity(intent);
+            }
+        });
 
 
         createPost.setOnClickListener(new View.OnClickListener() {
@@ -98,7 +107,7 @@ public class BoardWriteActivity extends AppCompatActivity {
                 bufferedReader.close();
                 Log.d("commit", "doInBackground: " + sb.toString());
                 return sb.toString();
-            } catch(Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
                 return null;
             }

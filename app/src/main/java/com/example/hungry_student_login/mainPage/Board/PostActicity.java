@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.example.hungry_student_login.R;
 import com.example.hungry_student_login.data.Post;
 import com.example.hungry_student_login.data.RestaurantListData;
+import com.example.hungry_student_login.mainPage.restaurant.MainPage;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,6 +40,7 @@ public class PostActicity extends AppCompatActivity {
     TextView pcontent;
     String resultjson;
     Post post = new Post();
+    ImageView returnimage;
     int pnum;
 
     @Override
@@ -48,6 +52,15 @@ public class PostActicity extends AppCompatActivity {
         nickname = findViewById(R.id.post_nickname);
         pdate = findViewById(R.id.post_date);
         pcontent = findViewById(R.id.post_content);
+        returnimage = findViewById(R.id.board_return);
+        returnimage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MainPage.class);
+                startActivity(intent);
+            }
+        });
+
         Intent intent = getIntent();
         pnum = intent.getIntExtra("pnum", 0);
         String url = "http://43.206.19.165/2016041085/postlist.php?pnum=" + pnum;

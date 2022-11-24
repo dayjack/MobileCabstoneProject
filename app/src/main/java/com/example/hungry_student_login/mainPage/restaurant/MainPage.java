@@ -1,25 +1,35 @@
 package com.example.hungry_student_login.mainPage.restaurant;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.hungry_student_login.R;
+import com.example.hungry_student_login.data.CategoryData;
 import com.example.hungry_student_login.mainPage.fragment.BoardFragment;
 import com.example.hungry_student_login.mainPage.fragment.RestaurantListFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
 
 public class MainPage extends AppCompatActivity {
 
-    MenuItem mSearch;
+    DrawerLayout mDrawerLayout;
+    Context context = this;
 
     /**
      * 바텁 탭 관련 변수들
@@ -34,11 +44,51 @@ public class MainPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mainpage);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowTitleEnabled(false); // 기존 title 지우기
+        actionBar.setDisplayHomeAsUpEnabled(true); // 뒤로가기 버튼 만들기
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_baseline_dehaze_48); //뒤로가기 버튼 이미지 지정
+
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+                menuItem.setChecked(true);
+                mDrawerLayout.closeDrawers();
+
+                int id = menuItem.getItemId();
+                String title = menuItem.getTitle().toString();
+
+                if(id == R.id.account){
+                    Toast.makeText(context, title + ": 계정 정보를 확인합니다.", Toast.LENGTH_SHORT).show();
+                }
+                else if(id == R.id.setting){
+                    Toast.makeText(context, title + ": 설정 정보를 확인합니다.", Toast.LENGTH_SHORT).show();
+                }
+                else if(id == R.id.logout){
+                    Toast.makeText(context, title + ": 로그아웃 시도중", Toast.LENGTH_SHORT).show();
+                }
+
+                return true;
+            }
+        });
+
+
         /**
          * 바텀 탭 관련 기능들
          * **/
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.main_frame, restaurantListFragment).commit();
+
+        if (CategoryData.mainpageFragment) {
+            fragmentTransaction.replace(R.id.main_frame, restaurantListFragment).commit();
+        } else {
+            fragmentTransaction.replace(R.id.main_frame, boardFragment).commit();
+        }
+
 
         bottomNavigationView = findViewById(R.id.navigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -48,9 +98,11 @@ public class MainPage extends AppCompatActivity {
 
                 switch (item.getItemId()) {
                     case R.id.restaurantlist_tab:
+                        CategoryData.mainpageFragment = true;
                         fragmentTransaction.replace(R.id.main_frame, restaurantListFragment).commit();
                         break;
                     case R.id.board_tab:
+                        CategoryData.mainpageFragment = false;
                         fragmentTransaction.replace(R.id.main_frame, boardFragment).commit();
                         break;
                 }
@@ -58,54 +110,16 @@ public class MainPage extends AppCompatActivity {
             }
         });
     }
-    /**
-    * 검색 바 관련
-    * */
+
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
-
-        getMenuInflater().inflate(R.menu.list_menu, menu);
-
-        mSearch = menu.findItem(R.id.search);
-
-        mSearch.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
-            @Override
-            public boolean onMenuItemActionExpand(MenuItem menuItem) {
-                Log.d("[Search]","현재 상태 : 확장됨");
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:{ // 왼쪽 상단 버튼 눌렀을 때
+                mDrawerLayout.openDrawer(GravityCompat.START);
                 return true;
             }
-
-            @Override
-            public boolean onMenuItemActionCollapse(MenuItem menuItem) {
-                Log.d("[Search]","현재 상태 : 축소됨");
-                return false;
-            }
-        });
-        //menuItem을 이용해서 SearchView 변수 생성
-        SearchView sv=(SearchView)mSearch.getActionView();
-        //확인버튼 활성화
-        sv.setSubmitButtonEnabled(true);
-
-        //SearchView의 검색 이벤트
-        sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-
-            //검색버튼을 눌렀을 경우
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                /*TextView text = (TextView)findViewById(R.id.txtresult);
-                text.setText(query + "를 검색합니다.");*/
-                return true;
-            }
-
-            //텍스트가 바뀔때마다 호출
-            @Override
-            public boolean onQueryTextChange(String newText) {
-          /*      TextView text = (TextView)findViewById(R.id.txtsearch);
-                text.setText("검색식 : "+newText);*/
-                return true;
-            }
-        });
-        return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
+
 }
