@@ -58,7 +58,6 @@ public class MainPage extends AppCompatActivity {
             }
         });
     }
-
     /**
     * 검색 바 관련
     * */
