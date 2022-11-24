@@ -3,13 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".mainPage.restaurant.fragment.RestaurantInfoFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:id="@+id/restaurant_info"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="700dp"
         android:textColor="@color/black"
         android:textSize="20dp"
         android:textAlignment="center"

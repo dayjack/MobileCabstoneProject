@@ -37,7 +37,7 @@
             android:id="@+id/review_commit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:fontFamily="@font/nanumsquareroundb"
             android:text="리뷰 등록"/>
         <ListView

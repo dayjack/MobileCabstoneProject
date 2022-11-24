@@ -68,6 +68,10 @@ public class RestaurantInfoFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_restaurant_info, container, false);
 
         TextView restaurantInfo = v.findViewById(R.id.restaurant_info);
+        restaurantInfo.setBackgroundResource(R.drawable.note);
+
+
+
         Bundle bundle = getArguments();
         if (bundle != null) {
             String info = bundle.getString("info");

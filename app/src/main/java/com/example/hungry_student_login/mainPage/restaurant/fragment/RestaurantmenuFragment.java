@@ -68,6 +68,7 @@ public class RestaurantmenuFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_restaurantmenu, container, false);
         TextView restaurantMenu = v.findViewById(R.id.restaurant_menu);
+        restaurantMenu.setBackgroundResource(R.drawable.menu);
         Bundle bundle = getArguments();
         if (bundle != null) {
             String menu = bundle.getString("menu");
