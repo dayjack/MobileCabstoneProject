@@ -58,7 +58,7 @@
 
             android:fontFamily="@font/nanumsquareroundb"
             android:hint="제목"
-            android:textColor="#A6A6A6"
+            android:textColor="#000000"
             android:textSize="30dp" />
 
 
@@ -88,17 +88,10 @@
             android:gravity="left"
             android:layout_marginBottom="5dp"
             android:text="username"
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            android:textColor="#000000"/>
 
 
-
-<!--        <TextView-->
-<!--            android:id="@+id/post_content"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="20dp"-->
-<!--            android:text="내용"-->
-<!--            android:textSize="20dp" />-->
 
 
         <TextView
@@ -110,7 +103,8 @@
             android:background="@drawable/border_radius"
             android:gravity="top"
             android:hint="cotents"
-            android:padding="10dp">
+            android:padding="10dp"
+            android:textColor="#000000">
         </TextView>
         <TextView
             android:layout_gravity="right"
@@ -120,7 +114,8 @@
             android:layout_marginTop="20dp"
             android:gravity="center_vertical|right"
             android:text="date"
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            android:textColor="#000000"/>
 
     </LinearLayout>
 

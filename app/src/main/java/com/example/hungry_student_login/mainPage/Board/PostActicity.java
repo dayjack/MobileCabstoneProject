@@ -1,6 +1,8 @@
 package com.example.hungry_student_login.mainPage.Board;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -63,6 +65,11 @@ public class PostActicity extends AppCompatActivity {
         Intent intent = getIntent();
         pnum = intent.getIntExtra("pnum", 0);
         Log.d("POSTLIST", "onCreate: " + pnum);
+       /* SharedPreferences pref;
+        SharedPreferences.Editor editor;
+        pref = getSharedPreferences("user", Activity.MODE_PRIVATE);
+        editor = pref.edit();*/
+
         String url = "http://43.206.19.165/2016041085/postlist.php?pnum=" + pnum;
         new DownloadPostTask().execute(url);
 

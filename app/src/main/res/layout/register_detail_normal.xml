@@ -87,19 +87,40 @@
                 android:text="인증" />
         </LinearLayout>
 
-
-
-        <EditText
-            android:id="@+id/nVerify"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <EditText
+                android:id="@+id/nverify"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="인증 번호를 입력해주세요"
+                android:layout_weight="0.6"/>
+            <Button
+                android:id="@+id/nverifyemail"
+                android:layout_width="wrap_content"
+                android:layout_height="55dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:layout_marginRight="20dp"
+                android:layout_weight="0.2"
+                android:text="인증" />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/nverifytext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="인증번호를 입력하고 인증버튼을 누르시오"
             android:layout_gravity="center"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="인증 번호를 입력해주세요" />
+            android:layout_marginTop="10dp"
+            />
 
         <EditText
             android:id="@+id/nPwd"

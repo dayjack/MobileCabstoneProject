@@ -42,8 +42,8 @@
         <activity android:name=".login.Register_detail_school" android:label="register_detail_school">
 
         </activity>
-
-
+        <activity android:name=".login.Register_detail_normal" android:label="Register_detail_normal"/>
+        <activity android:name=".login.WebViewActivity" android:label="WebViewActivity"/>
     </application>
 
 </manifest>
