@@ -23,7 +23,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".login.Register" android:label="Register"/>
-        <activity android:name=".login.Register_detail" android:label="Register_detail"/>
 
         <activity android:name=".mainPage.restaurant.MainPage" android:label="메인페이지"/>
         <activity android:name=".mainPage.restaurant.RestaurantInfoPage" android:label="식당정보">

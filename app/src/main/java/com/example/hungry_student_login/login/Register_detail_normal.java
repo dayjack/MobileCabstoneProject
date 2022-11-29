@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.hungry_student_login.R;
 import com.example.hungry_student_login.data.Registration;
+import com.example.hungry_student_login.mainPage.restaurant.MainPage;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -61,6 +63,15 @@ public class Register_detail_normal extends AppCompatActivity {
         nverify = findViewById(R.id.nverify);
         nVerifyBtn = findViewById(R.id.nVerifybtn);
         nVerifyText = findViewById(R.id.nverifytext);
+        ImageView back = findViewById(R.id.register_detail_normal_back);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Register_detail_normal.this, Register.class);
+                startActivity(intent);
+            }
+        });
 
         nVerifyBtn.setOnClickListener(new View.OnClickListener() {
             @Override

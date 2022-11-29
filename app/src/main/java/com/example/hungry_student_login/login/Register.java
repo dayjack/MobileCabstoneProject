@@ -6,12 +6,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioGroup;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.hungry_student_login.R;
+import com.example.hungry_student_login.mainPage.restaurant.MainPage;
 
 public class Register extends AppCompatActivity {
     RadioGroup radioGroup;
@@ -26,6 +28,15 @@ public class Register extends AppCompatActivity {
         EditText editText = (EditText) findViewById(R.id.nSchoolCode);
         Button code = (Button) findViewById(R.id.codeSearch);
         radioGroup = findViewById(R.id.radio_group);
+        ImageView back = findViewById(R.id.register_back);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Register.this, Login.class);
+                startActivity(intent);
+            }
+        });
 
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override

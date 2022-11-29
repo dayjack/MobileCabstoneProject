@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.hungry_student_login.R;
+import com.example.hungry_student_login.mainPage.restaurant.MainPage;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -60,6 +62,16 @@ public class Register_detail_school extends AppCompatActivity {
         verifyBtn = findViewById(R.id.verifybtn);
         verifyEmail = findViewById(R.id.verifyemail);
         verifyText = findViewById(R.id.verifytext);
+        ImageView back = findViewById(R.id.register_detail_school_back);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Register_detail_school.this, Register.class);
+                startActivity(intent);
+            }
+        });
+
 
         verifyEmail.setOnClickListener(new View.OnClickListener() {
             @Override
