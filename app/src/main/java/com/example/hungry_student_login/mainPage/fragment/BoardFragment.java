@@ -118,7 +118,6 @@ public class BoardFragment extends Fragment {
         create_icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(), "BoardCreateFragment", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getContext(), BoardWriteActivity.class);
                 startActivity(intent);
             }
