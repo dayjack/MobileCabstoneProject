@@ -1,8 +1,10 @@
 package com.example.hungry_student_login.mainPage.fragment;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -121,7 +123,14 @@ public class BoardFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        SharedPreferences pref;
+        SharedPreferences.Editor editor;
+        pref = getContext().getSharedPreferences("user", Activity.MODE_PRIVATE);
+        editor = pref.edit();
+        int scode = pref.getInt("scode", 0);
 
+        String url = "http://43.206.19.165/2016041085/postlist.php?scode=" + scode;
+        Log.d("POSTLIST", "onCreateView: "+url);
         new DownloadPostTask().execute(url);
 
         return v;

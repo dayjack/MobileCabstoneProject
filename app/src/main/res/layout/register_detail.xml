@@ -33,7 +33,20 @@
                 android:textColor="@color/black"
                 android:textSize="25dp"
                 android:textStyle="bold" />
+
         </LinearLayout>
+
+        <EditText
+            android:id="@+id/iD"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:ems="10"
+            android:hint="사용할 아이디를 입력해주세요"
+            android:inputType="textPersonName" />
 
         <EditText
             android:id="@+id/nickName"
@@ -47,8 +60,35 @@
             android:hint="사용할 닉네임을 입력해주세요"
             android:inputType="textPersonName" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <EditText
+                android:id="@+id/schoolEmail"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="0.8"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="학교 이메일을 입력해주세요" />
+            <Button
+                android:id="@+id/verifybtn"
+                android:layout_width="wrap_content"
+                android:layout_height="55dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:layout_marginRight="20dp"
+                android:text="인증" />
+        </LinearLayout>
+
+
+
         <EditText
-            android:id="@+id/schoolEmail"
+            android:id="@+id/verify"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:layout_marginLeft="20dp"
@@ -57,7 +97,7 @@
             android:layout_gravity="center"
             android:ems="10"
             android:inputType="textPersonName"
-            android:hint="학교 이메일을 입력해주세요" />
+            android:hint="인증 번호를 입력해주세요" />
 
         <EditText
             android:id="@+id/pwd"
@@ -92,5 +132,7 @@
             android:layout_marginTop="20dp"
             android:layout_gravity="center"
             android:text="가입하기" />
+
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

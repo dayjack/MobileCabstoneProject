@@ -1,6 +1,8 @@
 package com.example.hungry_student_login.mainPage.restaurant.fragment;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -181,8 +183,14 @@ public class RestaurantReviewFragment extends Fragment {
 
             String serverURL = "http://43.206.19.165/2016041085/writereview.php";
 
+            SharedPreferences pref;
+            SharedPreferences.Editor editor;
+            pref = getContext().getSharedPreferences("user", Activity.MODE_PRIVATE);
+            editor = pref.edit();
+            String nickname = pref.getString("nickname", "");
+            Log.d(TAG, "doInBackground: " + nickname);
             String parameters = "restaurant_id=" + CategoryData.restaurant_id +
-                    "&vcontent=" + editContent.getText().toString() + "&rate=" + ratingBar.getRating()+"&nickname=nickname";
+                    "&vcontent=" + editContent.getText().toString() + "&rate=" + ratingBar.getRating()+"&nickname="+nickname;
             Log.d("commit", "doInBackground: " + parameters);
 
             HttpURLConnection conn;

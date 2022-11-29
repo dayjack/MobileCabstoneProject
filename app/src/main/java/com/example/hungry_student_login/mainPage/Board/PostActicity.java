@@ -60,9 +60,9 @@ public class PostActicity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
         Intent intent = getIntent();
         pnum = intent.getIntExtra("pnum", 0);
+        Log.d("POSTLIST", "onCreate: " + pnum);
         String url = "http://43.206.19.165/2016041085/postlist.php?pnum=" + pnum;
         new DownloadPostTask().execute(url);
 

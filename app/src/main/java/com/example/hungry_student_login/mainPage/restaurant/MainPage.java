@@ -1,11 +1,15 @@
 package com.example.hungry_student_login.mainPage.restaurant;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,6 +25,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.hungry_student_login.R;
 import com.example.hungry_student_login.data.CategoryData;
+import com.example.hungry_student_login.data.Registration;
+import com.example.hungry_student_login.login.Login;
 import com.example.hungry_student_login.mainPage.fragment.BoardFragment;
 import com.example.hungry_student_login.mainPage.fragment.RestaurantListFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -38,11 +44,16 @@ public class MainPage extends AppCompatActivity {
     RestaurantListFragment restaurantListFragment = new RestaurantListFragment();
     BoardFragment boardFragment = new BoardFragment();
     BottomNavigationView bottomNavigationView;
+    TextView drawer_id;
+    TextView drawer_email;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mainpage);
+
+
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -71,6 +82,23 @@ public class MainPage extends AppCompatActivity {
                 }
                 else if(id == R.id.logout){
                     Toast.makeText(context, title + ": 로그아웃 시도중", Toast.LENGTH_SHORT).show();
+
+                    SharedPreferences pref;
+                    SharedPreferences.Editor editor;
+                    pref = getSharedPreferences("user", Activity.MODE_PRIVATE);
+                    editor = pref.edit();
+                    editor.putString("id", null);
+                    editor.putString("email", null);
+                    editor.putString("nickname", null);
+                    editor.putInt("auth", 0);
+                    editor.putInt("scode", 0);
+                    editor.putBoolean("login", false);
+                    editor.apply();
+                    editor.commit();
+                    Intent intent = new Intent(MainPage.this, Login.class);
+                    startActivity(intent);
+
+
                 }
 
                 return true;
@@ -116,6 +144,17 @@ public class MainPage extends AppCompatActivity {
         switch (item.getItemId()){
             case android.R.id.home:{ // 왼쪽 상단 버튼 눌렀을 때
                 mDrawerLayout.openDrawer(GravityCompat.START);
+                SharedPreferences pref;
+                SharedPreferences.Editor editor;
+                pref = getSharedPreferences("user", Activity.MODE_PRIVATE);
+                editor = pref.edit();
+                /*scode = pref.getInt("scode", 0);*/
+
+                drawer_id = findViewById(R.id.drawer_id);
+                drawer_email = findViewById(R.id.drawer_email);
+
+                drawer_id.setText( pref.getString("id", ""));
+                drawer_email.setText( pref.getString("email", ""));
                 return true;
             }
         }

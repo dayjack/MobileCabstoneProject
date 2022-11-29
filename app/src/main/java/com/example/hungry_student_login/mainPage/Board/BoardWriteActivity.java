@@ -1,6 +1,8 @@
 package com.example.hungry_student_login.mainPage.Board;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,6 +30,7 @@ public class BoardWriteActivity extends AppCompatActivity {
     EditText board_title;
     EditText board_content;
     ImageView returnPost;
+    String TAG = "POSTWRITE";
 
     String url = "";
 
@@ -65,6 +68,15 @@ public class BoardWriteActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... strings) {
+
+            SharedPreferences pref;
+            SharedPreferences.Editor editor;
+            pref = getSharedPreferences("user", Activity.MODE_PRIVATE);
+            editor = pref.edit();
+            String nickname = pref.getString("nickname", "");
+            scode = pref.getInt("scode", 0);
+            Log.d(TAG, "doInBackground: " + nickname);
+
             String serverURL = "http://43.206.19.165/2016041085/writepost.php";
             String parameters = "nickname=" + nickname + "&ptitle=" + board_title.getText() + "&pcontent="
                     + board_content.getText() + "&scode=" + scode;

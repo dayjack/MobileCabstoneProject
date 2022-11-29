@@ -1,7 +1,9 @@
 package com.example.hungry_student_login.mainPage.fragment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -21,6 +23,7 @@ import android.widget.Toast;
 
 import com.example.hungry_student_login.R;
 import com.example.hungry_student_login.data.CategoryData;
+import com.example.hungry_student_login.data.PreferenceManager;
 import com.example.hungry_student_login.data.RestaurantListData;
 import com.example.hungry_student_login.mainPage.restaurant.RestaurantInfoPage;
 import com.example.hungry_student_login.mainPage.restaurant.RestaurantListAdapter;
@@ -56,6 +59,7 @@ public class RestaurantListFragment extends Fragment {
     int scode = 0;
     String url = "http://43.206.19.165/2016041085" +
             "/restaurantlist.php?category="+CategoryData.category+"&restaurant_id="+restaurant_id+"&scode="+scode;
+    //                 PreferenceManager.getString(mContext, "rebuild");
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -163,6 +167,14 @@ public class RestaurantListFragment extends Fragment {
         listView = v.findViewById(R.id.restaurant_list);
         listView.setAdapter(adapter);
 
+        SharedPreferences pref;
+        SharedPreferences.Editor editor;
+        pref = getContext().getSharedPreferences("user", Activity.MODE_PRIVATE);
+        editor = pref.edit();
+        scode = pref.getInt("scode", 0);
+        Log.d("PREF", "onCreateView: " + scode);
+        url = "http://43.206.19.165/2016041085" +
+                "/restaurantlist.php?category="+CategoryData.category+"&restaurant_id="+restaurant_id+"&scode="+scode;
         new DownloadWebpageTask().execute(url);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
