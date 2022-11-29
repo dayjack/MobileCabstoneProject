@@ -7,7 +7,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+
         android:supportsRtl="true"
         android:theme="@style/Theme.Hungry_Student_Login"
         android:usesCleartextTraffic="true"
@@ -39,8 +39,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".mainPage.restaurant.MainPage"/>
         </activity>
+        <activity android:name=".login.Register_detail_school" android:label="register_detail_school">
 
-
+        </activity>
 
 
     </application>

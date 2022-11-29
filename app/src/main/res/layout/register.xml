@@ -47,48 +47,73 @@
             android:textSize="40dp"
             android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/schoolName"
+
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:layout_gravity="center"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:background="#f1f0f5"
-            android:ems="10"
-            android:hint="학교 이름"
-            android:inputType="textPersonName"
-            android:paddingLeft="12dp" />
-        <EditText
-            android:id="@+id/schoolCode"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/nSchoolCode"
+                android:layout_width="wrap_content"
+                android:layout_height="55dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="0.6"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="학교 코드를 입력해주세요" />
+
+            <Button
+                android:id="@+id/codeSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="22dp"
+                android:text="코드 검색" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:layout_gravity="center"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:background="#f1f0f5"
-            android:ems="10"
-            android:hint="학교 코드"
-            android:inputType="textPersonName"
-            android:paddingLeft="12dp" />
-        <TextView
-            android:id="@+id/searchSchoolCode"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:layout_gravity="center"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:ems="10"
-            android:hint="학교 코드 검색하러 가기"
-            android:inputType="textPersonName"
-            android:paddingLeft="12dp"
-            android:textAlignment="center"
-            android:gravity="center"
-            android:textColor="@color/purple_200"
-            />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioGroup
+                android:id="@+id/radio_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/sUser"
+                        android:layout_width="wrap_content"
+                        android:layout_height="55dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:text="학생" />
+
+                    <RadioButton
+                        android:id="@+id/nUser"
+                        android:layout_width="wrap_content"
+                        android:layout_height="55dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:text="일반인" />
+
+                </LinearLayout>
+
+            </RadioGroup>
+
+        </LinearLayout>
 
         <Button
             android:id="@+id/register_detail"

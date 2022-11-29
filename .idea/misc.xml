@@ -24,6 +24,8 @@
         <entry key="app/src/main/res/layout/postrecycler_item.xml" value="0.375" />
         <entry key="app/src/main/res/layout/register.xml" value="0.3446557971014493" />
         <entry key="app/src/main/res/layout/register_detail.xml" value="0.3446557971014493" />
+        <entry key="app/src/main/res/layout/register_detail_normal.xml" value="0.37604166666666666" />
+        <entry key="app/src/main/res/layout/register_detail_school.xml" value="0.25407608695652173" />
         <entry key="app/src/main/res/layout/restaurant_info.xml" value="0.31000976562499993" />
         <entry key="app/src/main/res/layout/restaurant_list.xml" value="0.375" />
         <entry key="app/src/main/res/layout/restaurant_list_item.xml" value="0.375" />
