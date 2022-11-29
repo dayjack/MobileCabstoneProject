@@ -118,8 +118,17 @@ public class BoardFragment extends Fragment {
         create_icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), BoardWriteActivity.class);
-                startActivity(intent);
+                SharedPreferences pref;
+                SharedPreferences.Editor editor;
+                pref = getActivity().getSharedPreferences("user", Activity.MODE_PRIVATE);
+                editor = pref.edit();
+                int auth = pref.getInt("auth", 1);
+                if (auth == 0) {
+                    Intent intent = new Intent(getContext(), BoardWriteActivity.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(getContext(), "게시글 작성은 학생회원에 한해 가능합니다.", Toast.LENGTH_LONG).show();
+                }
             }
         });
         SharedPreferences pref;

@@ -129,9 +129,17 @@ public class RestaurantReviewFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                SharedPreferences pref;
+                SharedPreferences.Editor editor;
+                pref = getActivity().getSharedPreferences("user", Activity.MODE_PRIVATE);
+                editor = pref.edit();
+                if (pref.getInt("auth", 1) == 0) {
+                    Log.d("commit", "onClick: "+"버튼 툴림");
+                    new ReviewCommit().execute("http://43.206.19.165/2016041085/writereview.php");
+                } else {
+                    Toast.makeText(getContext(), "리뷰 작성은 학생회원에 한해 가능합니다.", Toast.LENGTH_LONG).show();
+                }
 
-                Log.d("commit", "onClick: "+"버튼 툴림");
-                new ReviewCommit().execute("http://43.206.19.165/2016041085/writereview.php");
 
             }
         });
