@@ -20,6 +20,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.hungry_student_login.LoadingActivity;
 import com.example.hungry_student_login.R;
 import com.example.hungry_student_login.data.CategoryData;
 import com.example.hungry_student_login.login.Login;
@@ -69,6 +70,9 @@ public class MainPage extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mainpage);
+
+        Intent intent = new Intent(this, LoadingActivity.class);
+        startActivity(intent);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

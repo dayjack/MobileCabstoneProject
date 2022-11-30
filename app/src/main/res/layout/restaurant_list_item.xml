@@ -31,6 +31,7 @@
             android:layout_marginLeft="30dp"
             android:layout_weight="2"
             android:textColor="@color/black"
+            android:textSize="20dp"
             android:fontFamily="@font/nanumsquareroundb"
             />
         <TextView
@@ -38,7 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
-            android:textColor="#8977ad"
+            android:textColor="#3c78dc"
             android:fontFamily="@font/nanumsquareroundb"
             android:text="해시태그"
             android:layout_weight="1"
@@ -52,7 +53,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="30dp"
             android:layout_weight="1"
-            android:textColor="@color/black"
+            android:textColor="#808080"
             android:fontFamily="@font/nanumsquareroundb"
             android:layout_marginTop="3dp"/>
         <LinearLayout
