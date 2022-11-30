@@ -25,7 +25,7 @@
             android:layout_height="30dp"
             android:layout_marginLeft="2dp"
             android:fontFamily="@font/nanumsquareroundb"
-            android:text="게시판"
+            android:text="게시글 보기"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:layout_marginTop="5dp"

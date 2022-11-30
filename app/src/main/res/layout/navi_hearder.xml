@@ -21,14 +21,20 @@
         android:id="@+id/drawer_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
         android:text="텍스트1"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="20dp"/>
 
     <TextView
         android:id="@+id/drawer_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
         android:text="텍스트2"
+        android:textSize="15dp"
         />
 
 </LinearLayout>

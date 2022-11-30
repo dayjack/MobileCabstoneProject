@@ -38,7 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
-            android:textColor="#00d4ff"
+            android:textColor="#8977ad"
             android:fontFamily="@font/nanumsquareroundb"
             android:text="해시태그"
             android:layout_weight="1"
