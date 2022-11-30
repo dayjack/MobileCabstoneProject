@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../../../../layout/custom_preview.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1405" />
         <entry key="app/src/main/res/drawable/border.xml" value="0.3445" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1405" />
@@ -16,9 +17,11 @@
         <entry key="app/src/main/res/layout/fragment_restaurantmenu.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/header.xml" value="0.3591485507246377" />
         <entry key="app/src/main/res/layout/info_imageview.xml" value="0.1852355072463768" />
+        <entry key="app/src/main/res/layout/input_scode.xml" value="0.24003623188405798" />
         <entry key="app/src/main/res/layout/mainpage.xml" value="0.3446557971014493" />
         <entry key="app/src/main/res/layout/menu_image.xml" value="0.375" />
         <entry key="app/src/main/res/layout/navi_hearder.xml" value="0.3591485507246377" />
+        <entry key="app/src/main/res/layout/navi_view_login.xml" value="0.24003623188405798" />
         <entry key="app/src/main/res/layout/post_activity.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/post_write_activity.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/postrecycler_item.xml" value="0.375" />
@@ -30,11 +33,14 @@
         <entry key="app/src/main/res/layout/restaurant_list.xml" value="0.375" />
         <entry key="app/src/main/res/layout/restaurant_list_item.xml" value="0.375" />
         <entry key="app/src/main/res/layout/review_list_item.xml" value="0.19293478260869565" />
-        <entry key="app/src/main/res/layout/webview.xml" value="0.37604166666666666" />
+        <entry key="app/src/main/res/layout/webview.xml" value="0.35" />
+        <entry key="app/src/main/res/layout/webview2.xml" value="0.13020833333333334" />
         <entry key="app/src/main/res/menu/bottom_navigation_items.xml" value="0.375" />
         <entry key="app/src/main/res/menu/drawerlayout.xml" value="0.375" />
         <entry key="app/src/main/res/menu/list_menu.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/menu/navi_menu.xml" value="0.375" />
+        <entry key="app/src/main/res/menu/navi_menu_login.xml" value="0.1" />
+        <entry key="app/src/main/res/xml/network_security_config.xml" value="0.13020833333333334" />
       </map>
     </option>
   </component>

@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.hungry_student_login.data.CategoryData;
 import com.example.hungry_student_login.data.PreferenceManager;
 import com.example.hungry_student_login.data.Registration;
 import com.example.hungry_student_login.mainPage.restaurant.MainPage;
@@ -119,6 +120,7 @@ public class Login extends AppCompatActivity {
                     Registration.email = jsonObject.getString("email");
                     Registration.nickname = jsonObject.getString("nickname");
                     Registration.scode = jsonObject.getInt("scode");
+                    /*CategoryData.scode = Registration.scode;*/
 
                 } catch (JSONException e) {
                     e.printStackTrace();

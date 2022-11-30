@@ -171,11 +171,28 @@ public class RestaurantListFragment extends Fragment {
         SharedPreferences.Editor editor;
         pref = getContext().getSharedPreferences("user", Activity.MODE_PRIVATE);
         editor = pref.edit();
-        scode = pref.getInt("scode", 0);
-        Log.d("PREF", "onCreateView: " + scode);
-        url = "http://43.206.19.165/2016041085" +
-                "/restaurantlist.php?category="+CategoryData.category+"&restaurant_id="+restaurant_id+"&scode="+scode;
-        new DownloadWebpageTask().execute(url);
+
+        if (pref.getBoolean("login", false)) {
+            CategoryData.scode = pref.getInt("scode", 0);
+            url = "http://43.206.19.165/2016041085" +
+                    "/restaurantlist.php?category="+CategoryData.category+"&restaurant_id="+restaurant_id+"&scode="+CategoryData.scode;
+            new DownloadWebpageTask().execute(url);
+        } else {
+            if (CategoryData.scode != 0) {
+                url = "http://43.206.19.165/2016041085" +
+                        "/restaurantlist.php?category="+CategoryData.category+"&restaurant_id="+restaurant_id+"&scode="+CategoryData.scode;
+                new DownloadWebpageTask().execute(url);
+            } else {
+                Intent intent = getActivity().getIntent();
+                CategoryData.scode = intent.getIntExtra("scode", 0);
+                url = "http://43.206.19.165/2016041085" +
+                        "/restaurantlist.php?category="+CategoryData.category+"&restaurant_id="+restaurant_id+"&scode="+CategoryData.scode;
+                new DownloadWebpageTask().execute(url);
+            }
+
+
+        }
+
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -267,7 +284,7 @@ public class RestaurantListFragment extends Fragment {
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.detach(this).attach(this).commit();
         this.url = "http://43.206.19.165/2016041085" +
-                "/restaurantlist.php?category="+CategoryData.category+"&restaurant_id="+restaurant_id+"&scode="+scode;
+                "/restaurantlist.php?category="+CategoryData.category+"&restaurant_id="+restaurant_id+"&scode="+CategoryData.scode;
         adapter = new RestaurantListAdapter();
         new DownloadWebpageTask().execute(url);
         adapter.notifyDataSetChanged();

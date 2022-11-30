@@ -1,10 +1,14 @@
 package com.example.hungry_student_login.login;
 
+import static android.webkit.WebView.RENDERER_PRIORITY_BOUND;
+
+import android.os.Build;
 import android.os.Bundle;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.hungry_student_login.R;
@@ -14,12 +18,15 @@ public class WebViewActivity extends AppCompatActivity {
 
     private WebView webView = null;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.webview);
 
         webView = (WebView) findViewById(R.id.webview);
+        webView.setRendererPriorityPolicy(RENDERER_PRIORITY_BOUND, true);
+
 
 
         webView.setWebViewClient(new WebViewClient());  // 새 창 띄우기 않기
@@ -38,5 +45,8 @@ public class WebViewActivity extends AppCompatActivity {
         webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true); // javascript가 window.open()을 사용할 수 있도록 설정
 
         webView.loadUrl("http://jubsoo2.bscu.ac.kr/src_gogocode/src_gogocode.asp");
+
+
+
     }
 }

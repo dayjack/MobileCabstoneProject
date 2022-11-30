@@ -5,17 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -25,7 +22,6 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.hungry_student_login.R;
 import com.example.hungry_student_login.data.CategoryData;
-import com.example.hungry_student_login.data.Registration;
 import com.example.hungry_student_login.login.Login;
 import com.example.hungry_student_login.mainPage.fragment.BoardFragment;
 import com.example.hungry_student_login.mainPage.fragment.RestaurantListFragment;
@@ -46,14 +42,33 @@ public class MainPage extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     TextView drawer_id;
     TextView drawer_email;
+    MenuItem logout;
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        NavigationView navigationView;
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+
+        Menu menu = navigationView.getMenu();
+        MenuItem menuItem = menu.findItem(R.id.logout);
+        SharedPreferences pref;
+        SharedPreferences.Editor editor;
+        pref = getSharedPreferences("user", Activity.MODE_PRIVATE);
+        editor = pref.edit();
+        Boolean login = pref.getBoolean("login", false);
+
+        if (login) {
+            menuItem.setTitle("로그아웃");
+        } else {
+            menuItem.setTitle("로그인");
+        }
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mainpage);
-
-
-
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -62,9 +77,27 @@ public class MainPage extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true); // 뒤로가기 버튼 만들기
         actionBar.setHomeAsUpIndicator(R.drawable.ic_baseline_dehaze_48); //뒤로가기 버튼 이미지 지정
 
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        SharedPreferences pref;
+        SharedPreferences.Editor editor;
+        pref = getSharedPreferences("user", Activity.MODE_PRIVATE);
+        editor = pref.edit();
+        Boolean login = pref.getBoolean("login", false);
+
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        NavigationView navigationView;
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+
+        Menu menu = navigationView.getMenu();
+        MenuItem menuItem = menu.findItem(R.id.logout);
+
+        if (login) {
+            menuItem.setTitle("로그아웃");
+        } else {
+            menuItem.setTitle("로그인");
+        }
+
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
@@ -74,36 +107,39 @@ public class MainPage extends AppCompatActivity {
                 int id = menuItem.getItemId();
                 String title = menuItem.getTitle().toString();
 
-                if(id == R.id.account){
-                    Toast.makeText(context, title + ": 계정 정보를 확인합니다.", Toast.LENGTH_SHORT).show();
-                }
-                else if(id == R.id.setting){
-                    Toast.makeText(context, title + ": 설정 정보를 확인합니다.", Toast.LENGTH_SHORT).show();
-                }
-                else if(id == R.id.logout){
+                if(id == R.id.logout){
                     Toast.makeText(context, title + ": 로그아웃 시도중", Toast.LENGTH_SHORT).show();
 
                     SharedPreferences pref;
                     SharedPreferences.Editor editor;
                     pref = getSharedPreferences("user", Activity.MODE_PRIVATE);
                     editor = pref.edit();
-                    editor.putString("id", null);
-                    editor.putString("email", null);
-                    editor.putString("nickname", null);
-                    editor.putInt("auth", 0);
-                    editor.putInt("scode", 0);
-                    editor.putBoolean("login", false);
-                    editor.apply();
-                    editor.commit();
-                    Intent intent = new Intent(MainPage.this, Login.class);
-                    startActivity(intent);
+                    Boolean login = pref.getBoolean("login", false);
 
+                    if (login) {
+                        editor.putString("id", null);
+                        editor.putString("email", null);
+                        editor.putString("nickname", null);
+                        editor.putInt("auth", 0);
+                        editor.putInt("scode", 0);
+                        editor.putBoolean("login", false);
+                        CategoryData.scode = 0;
+                        editor.apply();
+                        editor.commit();
+                        Intent intent = new Intent(MainPage.this, Login.class);
+                        startActivity(intent);
 
+                    } else {
+                        Intent intent = new Intent(MainPage.this, Login.class);
+                        startActivity(intent);
+                    }
                 }
-
                 return true;
             }
         });
+
+
+
 
 
         /**
@@ -150,8 +186,11 @@ public class MainPage extends AppCompatActivity {
                 editor = pref.edit();
                 /*scode = pref.getInt("scode", 0);*/
 
+
                 drawer_id = findViewById(R.id.drawer_id);
                 drawer_email = findViewById(R.id.drawer_email);
+
+
 
                 drawer_id.setText( pref.getString("id", ""));
                 drawer_email.setText( pref.getString("email", ""));

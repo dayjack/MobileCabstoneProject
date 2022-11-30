@@ -12,9 +12,10 @@
         android:theme="@style/Theme.Hungry_Student_Login"
         android:usesCleartextTraffic="true"
 
+
         >
         <activity
-            android:name=".login.Login"
+            android:name=".mainPage.restaurant.MainPage"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,7 +25,7 @@
         </activity>
         <activity android:name=".login.Register" android:label="Register"/>
 
-        <activity android:name=".mainPage.restaurant.MainPage" android:label="메인페이지"/>
+        <activity android:name=".login.Login" android:label="로그인"/>
         <activity android:name=".mainPage.restaurant.RestaurantInfoPage" android:label="식당정보">
 
         </activity>
@@ -42,7 +43,7 @@
 
         </activity>
         <activity android:name=".login.Register_detail_normal" android:label="Register_detail_normal"/>
-        <activity android:name=".login.WebViewActivity" android:label="WebViewActivity"/>
+        <activity android:name=".login.WebViewActivity" android:label="WebView"/>
     </application>
 
 </manifest>
