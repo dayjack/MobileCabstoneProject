@@ -71,8 +71,11 @@ public class MainPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mainpage);
 
-        Intent intent = new Intent(this, LoadingActivity.class);
-        startActivity(intent);
+        if (CategoryData.firstLogin) {
+            CategoryData.firstLogin = false;
+            Intent intent = new Intent(this, LoadingActivity.class);
+            startActivity(intent);
+        }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
