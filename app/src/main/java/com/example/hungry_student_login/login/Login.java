@@ -14,8 +14,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.hungry_student_login.data.CategoryData;
-import com.example.hungry_student_login.data.PreferenceManager;
 import com.example.hungry_student_login.data.Registration;
 import com.example.hungry_student_login.mainPage.restaurant.MainPage;
 import com.example.hungry_student_login.R;
@@ -27,9 +25,7 @@ import org.json.JSONObject;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
