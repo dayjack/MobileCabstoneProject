@@ -7,14 +7,14 @@
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1405" />
         <entry key="app/src/main/res/drawable/border.xml" value="0.3445" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1405" />
-        <entry key="app/src/main/res/layout/activity_loading.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/activity_loading.xml" value="0.23209876543209876" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="app/src/main/res/layout/appbar.xml" value="0.3591485507246377" />
         <entry key="app/src/main/res/layout/category_gridlayout.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_board.xml" value="0.2105978260869565" />
         <entry key="app/src/main/res/layout/fragment_restaurant_info.xml" value="0.34782608695652173" />
         <entry key="app/src/main/res/layout/fragment_restaurant_list.xml" value="0.2105978260869565" />
-        <entry key="app/src/main/res/layout/fragment_restaurant_review.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_restaurant_review.xml" value="0.2640449438202247" />
         <entry key="app/src/main/res/layout/fragment_restaurantmenu.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/header.xml" value="0.3591485507246377" />
         <entry key="app/src/main/res/layout/info_imageview.xml" value="0.1852355072463768" />
@@ -33,7 +33,7 @@
         <entry key="app/src/main/res/layout/restaurant_info.xml" value="0.31000976562499993" />
         <entry key="app/src/main/res/layout/restaurant_list.xml" value="0.375" />
         <entry key="app/src/main/res/layout/restaurant_list_item.xml" value="0.375" />
-        <entry key="app/src/main/res/layout/review_list_item.xml" value="0.19293478260869565" />
+        <entry key="app/src/main/res/layout/review_list_item.xml" value="0.375" />
         <entry key="app/src/main/res/layout/webview.xml" value="0.35" />
         <entry key="app/src/main/res/layout/webview2.xml" value="0.13020833333333334" />
         <entry key="app/src/main/res/menu/bottom_navigation_items.xml" value="0.375" />
