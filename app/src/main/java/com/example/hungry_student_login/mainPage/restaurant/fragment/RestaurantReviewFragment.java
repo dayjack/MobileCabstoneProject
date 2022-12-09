@@ -68,7 +68,7 @@ public class RestaurantReviewFragment extends Fragment {
     private static final String TAG = "review";
 
     int restaurant_id = 0;
-    String url = "http://43.206.19.165/2016041085/reviewlist.php?restaurant_id=";
+    String url = "http://43.206.204.6/mobileProject/2016041085/reviewlist.php?restaurant_id=";
 
 
     public RestaurantReviewFragment() {
@@ -113,7 +113,7 @@ public class RestaurantReviewFragment extends Fragment {
         Bundle bundle = getArguments();
         CategoryData.restaurant_id = bundle.getInt("review");
 
-        url = "http://43.206.19.165/2016041085/reviewlist.php?restaurant_id=" + CategoryData.restaurant_id;
+        url = "http://43.206.204.6/mobileProject/2016041085/reviewlist.php?restaurant_id=" + CategoryData.restaurant_id;
 
 
         Log.d(TAG, "url : " + url);
@@ -135,7 +135,7 @@ public class RestaurantReviewFragment extends Fragment {
                 editor = pref.edit();
                 if (pref.getInt("auth", 1) == 0) {
                     Log.d("commit", "onClick: "+"버튼 툴림");
-                    new ReviewCommit().execute("http://43.206.19.165/2016041085/writereview.php");
+                    new ReviewCommit().execute("http://43.206.204.6/mobileProject/2016041085/writereview.php");
                 } else {
                     Toast.makeText(getContext(), "리뷰 작성은 학생회원에 한해 가능합니다.", Toast.LENGTH_LONG).show();
                 }
@@ -189,7 +189,7 @@ public class RestaurantReviewFragment extends Fragment {
         @Override
         protected String doInBackground(String... strings) {
 
-            String serverURL = "http://43.206.19.165/2016041085/writereview.php";
+            String serverURL = "http://43.206.204.6/mobileProject/2016041085/writereview.php";
 
             SharedPreferences pref;
             SharedPreferences.Editor editor;

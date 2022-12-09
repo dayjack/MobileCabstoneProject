@@ -60,7 +60,7 @@ public class RestaurnatImgPagerAdapter extends PagerAdapter {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.info_imageview, container, false);
         ImageView imageView = view.findViewById(R.id.img_pager);
-        String url = "http://43.206.19.165";
+        String url = "http://43.206.204.6/mobileProject";
         String temp = (String) urls.get(position);
         String substringtemp = temp.substring(2);
         url.concat(substringtemp);

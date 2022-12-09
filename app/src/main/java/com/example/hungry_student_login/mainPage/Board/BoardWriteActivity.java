@@ -77,7 +77,7 @@ public class BoardWriteActivity extends AppCompatActivity {
             scode = pref.getInt("scode", 0);
             Log.d(TAG, "doInBackground: " + nickname);
 
-            String serverURL = "http://43.206.19.165/2016041085/writepost.php";
+            String serverURL = "http://43.206.204.6/mobileProject/2016041085/writepost.php";
             String parameters = "nickname=" + nickname + "&ptitle=" + board_title.getText() + "&pcontent="
                     + board_content.getText() + "&scode=" + scode;
             HttpURLConnection conn;

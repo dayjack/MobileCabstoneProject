@@ -70,7 +70,7 @@ public class PostActicity extends AppCompatActivity {
         pref = getSharedPreferences("user", Activity.MODE_PRIVATE);
         editor = pref.edit();*/
 
-        String url = "http://43.206.19.165/2016041085/postlist.php?pnum=" + pnum;
+        String url = "http://43.206.204.6/mobileProject/2016041085/postlist.php?pnum=" + pnum;
         new DownloadPostTask().execute(url);
 
     }

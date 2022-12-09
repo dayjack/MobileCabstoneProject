@@ -134,7 +134,7 @@ public class Register_detail_normal extends AppCompatActivity {
             int scode = intent.getIntExtra("nSchoolCode", 0);
             Log.d("REG", "onCreate: " + scode);
 
-            String url = "http://43.206.19.165/2016041085/signup.php";
+            String url = "http:/43.206.204.6/mobileProject/2016041085/signup.php";
             String parameters = "id=" + id + "&password=" + pwd +
                     "&email=" + email + "&scode=" + scode +
                     "&nickname=" + nick + "&authority=" + 1;
@@ -197,7 +197,7 @@ public class Register_detail_normal extends AppCompatActivity {
 
             String email = eEmail.getText().toString();
 
-            String url = "http://43.206.19.165/2016041085/email.php";
+            String url = "http://43.206.204.6/mobileProject/2016041085/email.php";
             double dValue = Math.random();
             randomNum = (int)(dValue * 10000);
             Log.d("EMAIL", "doInBackground: " + randomNum);

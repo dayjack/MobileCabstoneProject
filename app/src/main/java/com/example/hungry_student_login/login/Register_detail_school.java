@@ -131,7 +131,7 @@ public class Register_detail_school extends AppCompatActivity {
             Log.d("REG", "onCreate: " + scode);
 
 
-            String url = "http://43.206.19.165/2016041085/signup.php";
+            String url = "http://43.206.204.6/mobileProject/2016041085/signup.php";
             String parameters = "id=" + id + "&password=" + pwd +
                     "&email=" + email + ".ac.kr&scode=" + scode +
                     "&nickname=" + nick + "&authority=" + 0;
@@ -195,7 +195,7 @@ public class Register_detail_school extends AppCompatActivity {
             String email = eEmail.getText().toString();
             email = email + ".ac.kr";
 
-            String url = "http://43.206.19.165/2016041085/email.php";
+            String url = "http://43.206.204.6/mobileProject/2016041085/email.php";
             double dValue = Math.random();
             randomNum = (int)(dValue * 10000);
             Log.d("EMAIL", "doInBackground: " + randomNum);

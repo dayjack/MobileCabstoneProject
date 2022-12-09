@@ -58,7 +58,7 @@ public class BoardFragment extends Fragment {
     TextView free_board;
     ImageView create_icon;
 
-    String url = "http://43.206.19.165/2016041085/postlist.php";
+    String url = "http://43.206.204.6/mobileProject/2016041085/postlist.php";
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -137,7 +137,7 @@ public class BoardFragment extends Fragment {
         editor = pref.edit();
         int scode = pref.getInt("scode", 0);
 
-        String url = "http://43.206.19.165/2016041085/postlist.php?scode=" + scode;
+        String url = "http://43.206.204.6/mobileProject/2016041085/postlist.php?scode=" + scode;
         Log.d("POSTLIST", "onCreateView: "+url);
         new DownloadPostTask().execute(url);
 

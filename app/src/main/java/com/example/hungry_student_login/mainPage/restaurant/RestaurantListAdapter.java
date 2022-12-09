@@ -74,7 +74,7 @@ public class RestaurantListAdapter extends BaseAdapter {
         ImageView imageView = view.findViewById(R.id.restaurant_thumbnail);
         RatingBar ratingBar = view.findViewById(R.id.list_restaurant_rating);
         TextView hashtag = view.findViewById(R.id.list_restaurant_hashtag);
-        String imgurl = "http://43.206.19.165";
+        String imgurl = "http://43.206.204.6/mobileProject";
 
         try {
             Log.d("img", "img: " + restaurantListData.getFood_img());

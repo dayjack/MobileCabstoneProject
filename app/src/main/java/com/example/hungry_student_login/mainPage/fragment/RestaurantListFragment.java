@@ -50,7 +50,7 @@ public class RestaurantListFragment extends Fragment {
     RestaurantListAdapter adapter = new RestaurantListAdapter();
     int restaurant_id = 0;
     int scode = 0;
-    String url = "http://43.206.19.165/2016041085" +
+    String url = "http://43.206.204.6/mobileProject/2016041085" +
             "/restaurantlist.php?category="+CategoryData.category+"&restaurant_id="+restaurant_id+"&scode="+scode;
     //                 PreferenceManager.getString(mContext, "rebuild");
 
@@ -167,18 +167,18 @@ public class RestaurantListFragment extends Fragment {
 
         if (pref.getBoolean("login", false)) {
             CategoryData.scode = pref.getInt("scode", 0);
-            url = "http://43.206.19.165/2016041085" +
+            url = "http://43.206.204.6/mobileProject/2016041085" +
                     "/restaurantlist.php?category="+CategoryData.category+"&restaurant_id="+restaurant_id+"&scode="+CategoryData.scode;
             new DownloadWebpageTask().execute(url);
         } else {
             if (CategoryData.scode != 0) {
-                url = "http://43.206.19.165/2016041085" +
+                url = "http://43.206.204.6/mobileProject/2016041085" +
                         "/restaurantlist.php?category="+CategoryData.category+"&restaurant_id="+restaurant_id+"&scode="+CategoryData.scode;
                 new DownloadWebpageTask().execute(url);
             } else {
                 Intent intent = getActivity().getIntent();
                 CategoryData.scode = intent.getIntExtra("scode", 0);
-                url = "http://43.206.19.165/2016041085" +
+                url = "http://43.206.204.6/mobileProject/2016041085" +
                         "/restaurantlist.php?category="+CategoryData.category+"&restaurant_id="+restaurant_id+"&scode="+CategoryData.scode;
                 new DownloadWebpageTask().execute(url);
             }
@@ -276,7 +276,7 @@ public class RestaurantListFragment extends Fragment {
     private void refresh() {
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.detach(this).attach(this).commit();
-        this.url = "http://43.206.19.165/2016041085" +
+        this.url = "http://43.206.204.6/mobileProject/2016041085" +
                 "/restaurantlist.php?category="+CategoryData.category+"&restaurant_id="+restaurant_id+"&scode="+CategoryData.scode;
         adapter = new RestaurantListAdapter();
         new DownloadWebpageTask().execute(url);

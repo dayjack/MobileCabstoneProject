@@ -65,7 +65,7 @@ public class Login extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String url = "http://43.206.19.165/2016041085/signin.php?id=" + userId.getText().toString() + "&password=" + pwd.getText().toString();
+                String url = "http://43.206.204.6/mobileProject/2016041085/signin.php?id=" + userId.getText().toString() + "&password=" + pwd.getText().toString();
                 new LoginTask().execute(url);
             }
         });

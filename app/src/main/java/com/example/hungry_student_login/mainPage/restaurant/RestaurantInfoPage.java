@@ -120,7 +120,7 @@ public class RestaurantInfoPage extends AppCompatActivity {
 
         Intent intent = getIntent();
         restaurant_id = intent.getIntExtra("restaurant_id", 0);
-        String url = "http://43.206.19.165/2016041085/restaurantlist.php?restaurant_id=" + restaurant_id + "&scode=" + scode;
+        String url = "http://43.206.204.6/mobileProject/2016041085/restaurantlist.php?restaurant_id=" + restaurant_id + "&scode=" + scode;
         Log.d("infotag", "onCreate: "+url);
         restaurantNameText = findViewById(R.id.restaurant_name);
         ratingBar = findViewById(R.id.restaurant_rating);
