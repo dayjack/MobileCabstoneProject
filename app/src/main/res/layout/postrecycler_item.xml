@@ -28,7 +28,8 @@
         android:fontFamily="@font/nanumsquareroundb"
         android:text="내용"
         android:layout_marginBottom="5dp"
-
+        android:maxLines="1"
+        android:ellipsize="end"
         android:textSize="15dp" />
 
     <LinearLayout
