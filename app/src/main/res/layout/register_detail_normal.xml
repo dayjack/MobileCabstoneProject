@@ -74,7 +74,7 @@
                 android:layout_weight="0.6"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:hint="학교 이메일을 입력해주세요" />
+                android:hint="이메일을 입력해주세요" />
 
             <Button
                 android:id="@+id/nVerifybtn"
