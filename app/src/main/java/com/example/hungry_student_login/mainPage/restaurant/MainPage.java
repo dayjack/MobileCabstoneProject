@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -97,6 +98,7 @@ public class MainPage extends AppCompatActivity {
 
         Menu menu = navigationView.getMenu();
         MenuItem menuItem = menu.findItem(R.id.logout);
+        MenuItem registerWeb = menu.findItem(R.id.register_web);
 
         if (login) {
             menuItem.setTitle("로그아웃");
@@ -140,10 +142,17 @@ public class MainPage extends AppCompatActivity {
                         Intent intent = new Intent(MainPage.this, Login.class);
                         startActivity(intent);
                     }
+                } else if (id == R.id.register_web) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    Uri uri = Uri.parse("http://43.206.204.6/mobileProject/2016041085/register.php");
+                    intent.setData(uri);
+                    startActivity(intent);
                 }
                 return true;
             }
         });
+
+
 
 
 
