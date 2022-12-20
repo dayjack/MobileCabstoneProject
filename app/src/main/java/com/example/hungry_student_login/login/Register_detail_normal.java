@@ -42,6 +42,7 @@ public class Register_detail_normal extends AppCompatActivity {
     EditText nverify;
 
     Button nVerifyBtn;
+    Button nVerifyEmail;
     TextView nVerifyText;
 
 
@@ -62,7 +63,9 @@ public class Register_detail_normal extends AppCompatActivity {
         eRepwd = (EditText) findViewById(R.id.nRepwd);
         nverify = findViewById(R.id.nverify);
         nVerifyBtn = findViewById(R.id.nVerifybtn);
+        nVerifyEmail = findViewById(R.id.nverifyemail);
         nVerifyText = findViewById(R.id.nverifytext);
+
         ImageView back = findViewById(R.id.register_detail_normal_back);
 
         back.setOnClickListener(new View.OnClickListener() {
@@ -76,14 +79,17 @@ public class Register_detail_normal extends AppCompatActivity {
         nVerifyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast.makeText(getApplicationContext(), "Email 발송", Toast.LENGTH_SHORT).show();
                 new EmailTask().execute();
             }
         });
 
-        nverify.setOnClickListener(new View.OnClickListener() {
+        nVerifyEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 emailNum = Integer.valueOf(nverify.getText().toString());
+                Log.d("EmailCon", "onClick: " + emailNum);
+
                 if (emailNum == randomNum) {
                     nVerifyText.setText("인증 완료 되었습니다.");
                 }
